@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">TeSh</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+   //Login page
+    <string name="text_login">Login</string>
+    <string name="textUserName">User Name</string>
+    <string name="textPassword">Password</string>
+    <string name="forgetPassword"><u>Forget password?</u></string>
+    <string name="textOr">Or</string>
+    <string name="facebook">Login with Facebook</string>
+    <string name="google">Login with Google</string>
+    <string name="not_acc">Doesn\'t have account?</string>
+    <string name="text_Signup1"><u>Sign up</u></string>
 
+    //Sign up
+    <string name="textEmail">Email</string>
 </resources>
