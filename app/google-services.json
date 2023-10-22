@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "157930531811",
+    "project_id": "tesh-comic-store-43",
+    "storage_bucket": "tesh-comic-store-43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157930531811:android:d858dc5e0d3e9981f68ed6",
+        "android_client_info": {
+          "package_name": "com.example.tesh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMInXy7NB7_qBhcvhmrLatqdTJhjQs2P4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TeSh</string>
 
-   //Login page
+    //Login page
     <string name="text_login">Login</string>
     <string name="textUserName">User Name</string>
     <string name="textPassword">Password</string>
@@ -12,6 +12,18 @@
     <string name="not_acc">Doesn\'t have account?</string>
     <string name="text_Signup1"><u>Sign up</u></string>
 
+    <string name="facebook_app_id">1343403089885143</string>
+    <string name="fb_login_protocol_scheme">fb1343403089885143</string>
+    <string name="facebook_client_token">3ad8d54e0cbd5ceb776d1af6b52455ab</string>
+
+
     //Sign up
+    <string name="text_signup">Sign Up</string>
     <string name="textEmail">Email</string>
+    <string name="text_Login1"><u>Login</u></string>
+    <string name="textComfirmPassword">Comfirm Password</string>
+    <string name="holderText">abc@gmail.com</string>
+    //Home
+    <string name="btn_cart">Cart</string>
+    <string name="et_search">Enter here to search...</string>
 </resources>

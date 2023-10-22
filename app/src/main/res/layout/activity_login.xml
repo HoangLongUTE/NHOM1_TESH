@@ -34,29 +34,34 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:padding="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         >
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_textUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:textColorHint="@color/black"
             app:boxBackgroundColor="@color/endcolor"
             app:boxBackgroundMode="filled"
             app:boxStrokeColor="@color/black"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:counterTextColor="@color/black"
             app:endIconMode="clear_text"
             app:endIconTint="@color/black"
             app:hintTextColor="@color/black"
             app:startIconDrawable="@drawable/user"
-            app:startIconTint="@color/black"
-            android:layout_marginTop="50dp">
+            app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/textUserName" />
+                android:hint="@string/textUserName"
+                android:maxLength="20" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -64,22 +69,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/layout_textUserName"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:textColorHint="@color/black"
             app:boxBackgroundColor="@color/endcolor"
             app:boxBackgroundMode="filled"
             app:boxStrokeColor="@color/black"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:counterTextColor="@color/black"
             app:endIconMode="password_toggle"
             app:endIconTint="@color/black"
             app:hintTextColor="@color/black"
-            app:startIconDrawable="@drawable/user"
+            app:startIconDrawable="@drawable/lock"
             app:startIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/textPassword" />
+                android:hint="@string/textPassword"
+                android:maxLength="20" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -90,7 +99,7 @@
             android:layout_below="@+id/layout_textPassword"
             android:textColor="@color/black"
             android:layout_alignRight="@id/layout_textPassword"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -98,11 +107,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_forgetPassword"
-            android:background="@drawable/btn_bgr"
-            android:text="Login"
-            android:fontFamily="@font/poppins_bold"
             android:layout_marginTop="20dp"
-            />
+            android:background="@drawable/btn_bgr"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/text_login" />
     </RelativeLayout>
 
     <LinearLayout
@@ -124,7 +132,7 @@
                 android:layout_width="100dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="25dp"
-                android:background="#917E7E">
+                android:background="@color/black">
             </View>
 
             <TextView
@@ -144,7 +152,7 @@
                 android:layout_width="100dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="25dp"
-                android:background="#917E7E">
+                android:background="@color/black">
 
             </View>
 

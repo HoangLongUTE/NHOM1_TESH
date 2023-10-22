@@ -13,10 +13,6 @@
         android:title="Notification"
         android:icon="@drawable/bell"/>
     <item
-        android:id="@+id/Message"
-        android:title="Message"
-        android:icon="@drawable/message"/>
-    <item
         android:id="@+id/User"
         android:title="User"
         android:icon="@drawable/user"/>
