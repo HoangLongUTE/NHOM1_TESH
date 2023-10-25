@@ -55,7 +55,8 @@ dependencies {
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
     implementation ("com.squareup.picasso:picasso:2.8")
-
+    androidTestImplementation("androidx.recyclerview:recyclerview:1.2.1")
+    androidTestImplementation("androidx.cardview:cardview:1.0.0")
 
 
 }
