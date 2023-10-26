@@ -15,8 +15,8 @@
         android:layout_weight="0.08"
         android:background="@color/endcolor"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp">
-
+        android:paddingRight="20dp"
+        android:gravity="center_vertical">
         <EditText
             android:id="@+id/et_search"
             android:layout_width="match_parent"
@@ -27,43 +27,75 @@
             android:hint="@string/et_search"
             android:textColorHint="@color/black"
             android:padding="5dp"
-            android:layout_centerVertical="true"
+
             android:drawablePadding="5dp"
             android:singleLine="true"
             android:textColor="@color/black"/>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <ImageView
             android:id="@+id/btn_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="56dp"
+            android:layout_marginRight="50dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:drawableLeft="@drawable/shopping_cart"
-            android:background="@drawable/bgr_btn_cart"
-            android:textColor="@color/black"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/btn_cart" />
+            android:src="@drawable/shopping_cart"
+             />
+        <ImageView
+            android:id="@+id/btn_mess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="56dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/messenger"
+            />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/center_layout"
+    <ScrollView
+        android:id="@+id/content_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.85"
-        android:orientation="vertical">
-        <ViewFlipper
-            android:id="@+id/ImageSlider"
+        android:layout_weight="0.92"
+        android:background="@color/white">
+        <LinearLayout
+            android:id="@+id/center_layout"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <ViewFlipper
+                android:id="@+id/ImageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"/>
+            <TextView
+                android:id="@+id/tv_categories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Categories"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="20dp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_categories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/tv_hotproduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hot Product"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="20dp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_hotproduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/footer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.07"
-        android:background="@color/white"
-        ></RelativeLayout>
+
 </LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="15dp">
+   <LinearLayout
+       android:layout_width="120dp"
+       android:layout_height="220dp"
+       android:orientation="vertical"
+       android:background="@drawable/home_item_categories_bgr"
+       android:padding="10dp"
+       >
+       <ImageView
+           android:id="@+id/imgcategories"
+           android:layout_width="120dp"
+           android:layout_height="150dp"
+           android:src="@drawable/categories1"
+           android:layout_gravity="center_horizontal"/>
+       <TextView
+           android:id="@+id/namecategories"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Figure"
+           android:textColor="@color/black"
+           android:textSize="15dp"
+           android:fontFamily="@font/julius_sans_one"
+           android:gravity="center_horizontal"
+           android:layout_marginTop="10dp"
+           android:maxLines="2"
+         />
+   </LinearLayout>
+</LinearLayout>
