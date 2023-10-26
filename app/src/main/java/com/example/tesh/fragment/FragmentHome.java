@@ -65,11 +65,11 @@ public class FragmentHome extends Fragment {
         rcvHotProduct.setLayoutManager(layoutManager);
 
         List<HotProductItem> hotProductItems = new ArrayList<>();
-        hotProductItems.add(new HotProductItem(R.drawable.categories1, "Figure Hinata Hyuga - Naruto Shippuden", " $ 75 000",123));
-        hotProductItems.add(new HotProductItem(R.drawable.categories1, "Figure Hinata Hyuga - Naruto Shippuden", " $ 75 000",123));
-        hotProductItems.add(new HotProductItem(R.drawable.categories1, "Figure Hinata Hyuga - Naruto Shippuden", " $ 75 000",123));
-        hotProductItems.add(new HotProductItem(R.drawable.categories1, "Figure Hinata Hyuga - Naruto Shippuden", " $ 75 000",123));
-
+        hotProductItems.add(new HotProductItem(R.drawable.categories1, "Figure Hinata Hyuga - Naruto Shippuden", " $ 15",123));
+        hotProductItems.add(new HotProductItem(R.drawable.categories2, "Gundam MG Virtue", " $739",223));
+        hotProductItems.add(new HotProductItem(R.drawable.categories3, "Stiker Genshin Impact Nahida", " $ 4",43));
+        hotProductItems.add(new HotProductItem(R.drawable.categories4, "Heroes Acedamy Keychain ", " $ 8",23));
+        hotProductItems.add(new HotProductItem(R.drawable.categories5, "Detective Conan ", " $ 3",523));
 
         HotProductAdapter hotProductAdapter = new HotProductAdapter(hotProductItems);
         rcvHotProduct.setAdapter(hotProductAdapter);
