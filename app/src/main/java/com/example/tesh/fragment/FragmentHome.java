@@ -1,5 +1,6 @@
 package com.example.tesh.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,10 +8,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
+import com.example.tesh.Cart.Cart;
 import com.example.tesh.R;
+import com.example.tesh.profile;
 
 public class FragmentHome extends Fragment {
 
@@ -22,9 +26,12 @@ public class FragmentHome extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    Button btn_to_cart;
+
 
     public FragmentHome() {
         // Required empty public constructor
+
     }
 
 
@@ -37,6 +44,8 @@ public class FragmentHome extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +73,16 @@ public class FragmentHome extends Fragment {
         for(int image : images){
             flipperimage(image);
         }
+
+        btn_to_cart = view.findViewById(R.id.btn_cart);
+        btn_to_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Cart.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 

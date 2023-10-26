@@ -30,9 +30,9 @@
             android:layout_centerVertical="true"
             android:drawablePadding="5dp"
             android:singleLine="true"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/btn_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

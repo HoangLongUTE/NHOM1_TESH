@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+
+    <style name="roundOutline" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5dp</item>
+        <item name="color">@color/white</item>
+    </style>
+
+    <style name="roundOutline1" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15dp</item>
+        <item name="color">@color/white</item>
+    </style>
+
+    <style name="roundOutline2" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">40dp</item>
+        <item name="color">@color/white</item>
+    </style>
+
+
+</resources>
