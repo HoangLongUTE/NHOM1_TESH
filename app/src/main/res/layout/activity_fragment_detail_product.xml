@@ -1,85 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".fragment.FragmentHome"
-    android:background="@color/white">
+    tools:context=".fragment.FragmentHome">
 
     <RelativeLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_alignParentTop="true"
         android:background="@color/endcolor"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:layout_alignParentTop="true"
-        >
+        android:paddingRight="20dp">
 
-        <ImageButton
-            android:src="@drawable/back"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:background="@android:color/transparent"
-            android:layout_centerVertical="true"
             android:padding="10dp"
-            />
+            android:src="@drawable/back" />
+
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
             <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_go_to_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
                 android:src="@drawable/shopping_cart"
-                android:background="@android:color/transparent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
                 />
+
             <androidx.appcompat.widget.AppCompatImageButton
-                android:src="@drawable/share"
-                android:background="@android:color/transparent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:layout_marginLeft="20dp"
-                />
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:src="@drawable/share" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </RelativeLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="70dp"
-        android:scrollbars="vertical"
-        >
+        android:scrollbars="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingHorizontal="20dp"
-            android:scrollbars="vertical"
-            >
+            android:scrollbars="vertical">
+
             <LinearLayout
                 android:id="@+id/center_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/white"
                 android:layout_alignParentTop="true"
-                >
+                android:background="@color/white"
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:background="@drawable/bg_gray_rounded"
+                    android:gravity="center"
 
                     >
+
                     <ImageView
                         android:layout_width="130dp"
                         android:layout_height="200dp"
@@ -88,237 +90,251 @@
                         />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Conan Detective Ep80 "
                     android:textColor="@color/black"
-                    android:textStyle="bold"
                     android:textSize="20dp"
-                    />
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
                     android:text="đ 20.570"
                     android:textColor="@color/red"
-                    android:textStyle="bold"
-                    android:layout_marginTop="6dp"
-                    />
+                    android:textStyle="bold" />
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginTop="4dp"
-                    >
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:id="@+id/evalute"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src='@drawable/five_full_stars'
-                        android:layout_marginTop="6dp"
-                        android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"
-                        />
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="6dp"
+                        android:src='@drawable/five_full_stars' />
+
                     <TextView
                         android:id="@+id/sold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_toRightOf="@id/evalute"
                         android:text="đã bán 143"
                         android:textColor="@color/black"
-                        android:textStyle="normal"
                         android:textSize="14dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@id/evalute"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginLeft="20dp"
-                        />
+                        android:textStyle="normal" />
                 </RelativeLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
                     android:layout_marginTop="12dp"
-                    >
+                    android:gravity="center_vertical">
+
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_minus"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:text="-"
                         android:background="@drawable/bg_border_black"
-                        android:textColor="@color/black"
-                        />
+                        android:text="-"
+                        android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/txt_quantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1"
-                        android:textColor="@color/black"
-                        android:textAlignment="center"
                         android:background="@drawable/bg_border_black"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="15dp"
-                        />
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_plus"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/bg_border_black"
                         android:text="+"
-                        android:textColor="@color/black"
-                        />
+                        android:textColor="@color/black" />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:paddingBottom="30dp"
                 android:background="@drawable/bg_gray_rounded"
                 android:orientation="vertical"
-                >
+                android:paddingBottom="30dp">
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Detail infomation"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
                     android:background="@drawable/bg_yellow_rounded"
                     android:paddingHorizontal="20dp"
-                    />
+                    android:text="Detail infomation"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="
-                Truyện hay \n
-                Ý nghĩa \n
-                Giá cả hợp lí\n
-                Dễ đọc\n
-                Dễ hiểu\n
-                Truyện hay\n
-                Ý nghĩa\n
-                Giá cả hợp lí\n
-                Dễ đọc\n"
-                    android:ellipsize="start"
-                    android:textColor="@color/black"
                     android:layout_marginTop="20dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:text="Truyện hay tâm lí đối với các bậc phụ huyen \n1. Ý nghĩa \n
+                    - Có nhiều ý nghĩa sâu xa\n
+                    - Giảm khoảng cách giữa các thế hệ\n
+                    - Giúp cuộc sống muôn màu muôn vẻ\n
+                    - Tạo góc nhiều sâu hơn cho con cái\n2. Nhà xuất bản:Nhà xuất bản nhi đồng\n3. Số trang: 1002 trang\n4. Tài liệu tham khảo: Đắc nhân tâm"
                     />
+
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:paddingBottom="30dp"
                 android:background="@drawable/bg_gray_rounded"
                 android:orientation="vertical"
-                >
+                android:paddingBottom="30dp">
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:text="Review"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
                     android:background="@drawable/bg_yellow_rounded"
                     android:paddingHorizontal="20dp"
-                    />
+                    android:text="Review"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="20dp"
                     android:background="@drawable/bg_gray_rounded"
+                    android:padding="20dp"
+                    android:orientation="vertical"
                     >
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                         <ImageView
                             android:id="@+id/avtPerson"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/user"
-                            />
+                            android:src="@drawable/user" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="KOD"
-                            android:layout_toRightOf="@+id/avtPerson"
-                            android:textColor="@color/black"
                             android:layout_marginLeft="26dp"
-                            />
+                            android:layout_toRightOf="@+id/avtPerson"
+                            android:text="KOD"
+                            android:textColor="@color/black" />
+
                         <ImageView
                             android:id="@+id/review"
                             android:layout_width="120dp"
                             android:layout_height="10dp"
-                            android:src='@drawable/five_full_stars'
-                            android:layout_marginTop="30dp"
                             android:layout_marginStart="0dp"
+                            android:layout_marginTop="30dp"
                             android:layout_toRightOf="@+id/avtPerson"
-                            />
+                            android:src='@drawable/five_full_stars' />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="20/10/2023"
-                            android:textColor="@color/black"
-                            android:textSize="14dp"
                             android:layout_alignParentTop="true"
                             android:layout_alignParentRight="true"
-                            />
+                            android:text="20/10/2023"
+                            android:textColor="@color/black"
+                            android:textSize="14dp" />
                     </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Tôi đã mua và đọc thử, thực sử rất cảm xúc. Tôi cảm thấy yêu thương cha mẹ nhiều hơn, muốn dành nhiều thời gian hơn cho họ. Cảm ơn tác giả, cảm ơn nhà xuất bản nhi đồng"
+                        android:textColor="@color/black"
+                        android:textStyle="normal" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 
-
     <LinearLayout
         android:id="@+id/footer_layout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/lightGray"
         android:layout_alignParentBottom="true"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="20dp"
-        >
+        android:background="@color/lightGray"
+        android:gravity="center"
+        android:paddingHorizontal="10dp">
+
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_go_to_chat"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bg_yellow_rounded"
+            android:padding="10dp"
             android:src="@drawable/messenger"
-            android:background="@drawable/bg_yellow_rounded"
-            android:padding="10dp"
-            android:layout_marginLeft="20dp"
 
             />
+
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_add_to_favourite"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bg_yellow_rounded"
+            android:padding="10dp"
             android:src="@drawable/heart"
-            android:background="@drawable/bg_yellow_rounded"
-            android:padding="10dp"
-            android:layout_marginLeft="20dp"
 
             />
+
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_add_to_cart"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/shopping_cart"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/bg_yellow_rounded"
             android:padding="10dp"
-            android:layout_marginLeft="20dp"
+            android:src="@drawable/add_to_cart"
 
             />
+
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_buy_now"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/bg_yellow_rounded"
-            android:text="Buy now"
-            android:textColor="@color/black"
             android:paddingHorizontal="24dp"
-            android:layout_marginLeft="20dp"
-            />
+            android:text="Buy"
+            android:textColor="@color/black" />
     </LinearLayout>
 </RelativeLayout>
