@@ -129,8 +129,9 @@
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                app:srcCompat="@drawable/ic_camera" />
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_camera"
+                 />
 
             <EditText
                 android:id="@+id/inputchat"
@@ -158,7 +159,16 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="100dp"
                 android:layout_marginBottom="26dp"
-                app:srcCompat="@drawable/ic_react" />
+                android:src="@drawable/ic_react" />
+
+            <ImageView
+                android:id="@+id/send"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="45dp"
+                android:src="@drawable/ic_send"/>
         </RelativeLayout>
 
     </LinearLayout>
