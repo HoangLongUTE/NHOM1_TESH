@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragment.FragmentNotification">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/header_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="FRAGMENT NOTIFICATION"
-        android:gravity="center"
-        android:textSize="16dp"
-        android:textColor="@color/black"
-        />
-</FrameLayout>
+        android:layout_height="0dp"
+        android:layout_weight="0.08"
+        android:background="@color/endcolor">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/julius_sans_one"
+            android:text="NOTIFICTION"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/center_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.92">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+
+</LinearLayout>
