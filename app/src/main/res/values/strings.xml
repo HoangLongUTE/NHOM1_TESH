@@ -26,4 +26,5 @@
     //Home
     <string name="btn_cart">Cart</string>
     <string name="et_search">Enter here to search...</string>
+    <string name="input_mess">message</string>
 </resources>

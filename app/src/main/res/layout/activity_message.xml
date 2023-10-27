@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".MessageActivity">
+
+    <RelativeLayout
+        android:id="@+id/header_mess"
+        android:layout_weight="0.08"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FEC400">
+
+        <ImageView
+            android:id="@+id/imageView_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            app:srcCompat="@drawable/ic_back"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="MESSAGE"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="24sp"
+            android:textColorHint="@color/black"
+            android:fontFamily="@font/julius_sans_one"/>
+
+        <ImageView
+            android:id="@+id/imageView_option"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/ic_option"
+            android:layout_marginRight="10dp"/>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/content_mess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.85">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/mess_avatar1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avt1"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="150dp"
+            android:layout_marginRight="15dp"
+            app:shapeAppearanceOverlay="@style/roundOutline1" />
+
+            <TextView
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Còn truyện Conan tập 100 không shop ?"
+                android:layout_marginTop="150dp"
+                android:textColorHint="@color/black"
+                android:background="@drawable/border_rounded_mess"
+                android:layout_toLeftOf="@+id/mess_avatar1"
+                />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/mess_avatar2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avt2"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="15dp"
+            app:shapeAppearanceOverlay="@style/roundOutline1" />
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Hết em."
+            android:layout_marginTop="200dp"
+            android:textColorHint="@color/black"
+            android:background="@drawable/border_rounded_mess"
+            android:layout_toRightOf="@+id/mess_avatar2"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Lớn rồi còn đọc truyện à em."
+            android:textColorHint="@color/black"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/border_rounded_mess"
+            android:layout_toRightOf="@+id/mess_avatar2"
+            android:layout_below="@+id/text1"
+            android:layout_marginLeft="10dp"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/footer_mess"
+            android:layout_width="match_parent"
+            android:layout_height="83dp"
+            android:background="@color/endcolor"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:id="@+id/camera"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_camera"
+                 />
+
+            <EditText
+                android:id="@+id/inputchat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="90dp"
+                android:background="@drawable/border_inputchat"
+                android:drawablePadding="5dp"
+                android:hint="@string/input_mess"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
+            <ImageView
+                android:id="@+id/react"
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="100dp"
+                android:layout_marginBottom="26dp"
+                android:src="@drawable/ic_react" />
+
+            <ImageView
+                android:id="@+id/send"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="45dp"
+                android:src="@drawable/ic_send"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

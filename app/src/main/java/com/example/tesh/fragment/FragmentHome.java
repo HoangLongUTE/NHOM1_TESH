@@ -1,5 +1,6 @@
 package com.example.tesh.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,7 +26,7 @@ import java.util.List;
 public class FragmentHome extends Fragment {
 
 
-
+    ImageView btn_to_cart;
     ViewFlipper imageslider;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +78,16 @@ public class FragmentHome extends Fragment {
 
 
 
+
+        btn_to_cart = view.findViewById(R.id.btn_cart);
+        btn_to_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Cart.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
@@ -90,5 +101,4 @@ public class FragmentHome extends Fragment {
         imageslider.setOutAnimation(requireContext(), android.R.anim.slide_out_right);
 
     }
-
 }
