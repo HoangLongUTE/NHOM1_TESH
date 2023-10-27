@@ -56,6 +56,7 @@ dependencies {
     // https://firebase.google.com/docs/android/setup#available-libraries
     implementation ("com.squareup.picasso:picasso:2.8")
 
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 
 
 }
