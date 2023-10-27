@@ -57,6 +57,8 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.8")
 
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+    androidTestImplementation("androidx.recyclerview:recyclerview:1.2.1")
+    androidTestImplementation("androidx.cardview:cardview:1.0.0")
 
 
 }
