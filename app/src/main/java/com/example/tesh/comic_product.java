@@ -1,59 +1,48 @@
-package com.example.tesh.fragment;
+package com.example.tesh;
+import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import com.example.tesh.R;
 import com.example.tesh.adapter.ComicAdapter;
 import com.example.tesh.model.comic_model;
+
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentNotification#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class FragmentComic extends Fragment {
-
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+public class comic_product extends AppCompatActivity {
     private RecyclerView recyclerView_comic;
     private ComicAdapter comicAdapter;
 
+    ImageView btn_back;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_comic, container, false);
-        recyclerView_comic = view.findViewById(R.id.rev_comic);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_comic_product);
 
-        // Initialize your adapter and set it to the RecyclerView
-        comicAdapter = new ComicAdapter(getActivity(), getlist_comic());
-        recyclerView_comic.setLayoutManager(new GridLayoutManager(getActivity(), 2)); // 2 columns grid layout
+        recyclerView_comic = findViewById(R.id.rev_comic);
+        comicAdapter = new ComicAdapter(this, getlist_comic());
+        recyclerView_comic.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns grid layout
         recyclerView_comic.setAdapter(comicAdapter);
-
-        return view;
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(comic_product.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private List<comic_model> getlist_comic() {
         List<comic_model> comicModels = new ArrayList<>();
-        // Add your favorite_model objects here
+        // Add your comic_model objects here
         comicModels.add(new comic_model(R.drawable.conan, "Conan Detective EP80", "đ 21.570", "Đã bán 200"));
         comicModels.add(new comic_model(R.drawable.bayvienngocrong2, "Dragon Ball ", "đ 21.570", "Đã bán 120"));
         comicModels.add(new comic_model(R.drawable.conanmoi, "Conan Detective EP90", "đ 20.000", "Đã bán 200"));
@@ -68,5 +57,3 @@ public class FragmentComic extends Fragment {
         return comicModels;
     }
 }
-
-
