@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.tesh.adapter.AdapterViewPager;
+import com.example.tesh.fragment.FragmentAboutUs;
 import com.example.tesh.fragment.FragmentFavorite;
 import com.example.tesh.fragment.FragmentHome;
 import com.example.tesh.fragment.FragmentNotification;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentArrayList.add(new FragmentFavorite());
         fragmentArrayList.add(new FragmentNotification());
         fragmentArrayList.add(new FragmentUser());
+        fragmentArrayList.add(new FragmentAboutUs());
 
         AdapterViewPager adapterViewPager = new AdapterViewPager(this,fragmentArrayList);
         //setAdapter
@@ -54,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         bottomNav.setSelectedItemId(R.id.User);
                         break;
+                    case 4:
+                        bottomNav.setSelectedItemId(R.id.AboutUs);
+                        break;
 
                 }
 
@@ -71,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
                     pagerMain.setCurrentItem(2);
                 } else if (item.getItemId() == R.id.User) {
                     pagerMain.setCurrentItem(3);
+                }
+                else if (item.getItemId() == R.id.AboutUs) {
+                    pagerMain.setCurrentItem(4);
                 }
                 return true;
             }

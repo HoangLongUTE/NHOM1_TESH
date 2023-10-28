@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="15dp"
+    tools:context=".fragment.FragmentAboutUs">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cai Hoàng Long\n21115053102123"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lê Văn Bình Định\n21115053120206"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lê Thị Thùy Trâm\n21115053120354"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nguyễn Thúy Nga\n21115053120228"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nguyễn Đức Truyền\n21115053120254"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"/>
+</LinearLayout>

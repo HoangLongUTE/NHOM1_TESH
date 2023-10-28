@@ -16,4 +16,8 @@
         android:id="@+id/User"
         android:title="User"
         android:icon="@drawable/user"/>
+    <item
+        android:id="@+id/AboutUs"
+        android:title="About Us"
+        android:icon="@drawable/group"/>
 </menu>
