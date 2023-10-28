@@ -59,7 +59,7 @@ public class FragmentFavorite extends Fragment {
         List<favorite_model> favoriteModels = new ArrayList<>();
         // Add your favorite_model objects here
         favoriteModels.add(new favorite_model(R.drawable.figure, "Figure Naruto", "$ 14", "Sold 200"));
-        favoriteModels.add(new favorite_model(R.drawable.mohinh, "MG 1/100 Wing GunDam", "$ 10", "Sold 120"));
+        favoriteModels.add(new favorite_model(R.drawable.mohinh, "Wing GunDam", "$ 10", "Sold 120"));
         favoriteModels.add(new favorite_model(R.drawable.stickergenshin, "Sticker Genshin", "$ 16", "Sold 200"));
         favoriteModels.add(new favorite_model(R.drawable.monkeyluffy, "Kaido", "$ 12", "Sold 150"));
         favoriteModels.add(new favorite_model(R.drawable.onepiece, "OnePiece", "$ 11", "Sold 240"));

@@ -3,6 +3,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -31,14 +32,20 @@ public class comic_product extends AppCompatActivity {
         recyclerView_comic.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns grid layout
         recyclerView_comic.setAdapter(comicAdapter);
         btn_back = findViewById(R.id.btn_back);
+
+        Intent intent = getIntent();
+        int categoryId = intent.getIntExtra("categoryId", 0);
+        String categoryName = intent.getStringExtra("categoryName");
+        Log.d("comic_product", "categoryId: " + categoryId + ", categoryName: " + categoryName);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(comic_product.this,MainActivity.class);
+                Intent intent = new Intent(comic_product.this, MainActivity.class);
                 startActivity(intent);
             }
         });
     }
+
 
     private List<comic_model> getlist_comic() {
         List<comic_model> comicModels = new ArrayList<>();
