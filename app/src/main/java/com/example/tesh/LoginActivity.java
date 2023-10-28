@@ -17,7 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
-    TextView tv_Signup;
+    TextView tv_Signup,text_forgetPassword;
     Button btnLogin, btn_facebook;
     TextInputEditText et_UserName, et_Password;
     @Override
@@ -31,7 +31,15 @@ public class LoginActivity extends AppCompatActivity {
         et_UserName=findViewById(R.id.textUserName);
         et_Password=findViewById(R.id.textPassword);
         btn_facebook=findViewById(R.id.btn_facebook);
+        text_forgetPassword = findViewById(R.id.text_forgetPassword);
 
+        text_forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
