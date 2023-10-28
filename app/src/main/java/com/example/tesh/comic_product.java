@@ -43,15 +43,15 @@ public class comic_product extends AppCompatActivity {
     private List<comic_model> getlist_comic() {
         List<comic_model> comicModels = new ArrayList<>();
         // Add your comic_model objects here
-        comicModels.add(new comic_model(R.drawable.conan, "Conan Detective EP80", "đ 21.570", "Đã bán 200"));
-        comicModels.add(new comic_model(R.drawable.bayvienngocrong2, "Dragon Ball ", "đ 21.570", "Đã bán 120"));
-        comicModels.add(new comic_model(R.drawable.conanmoi, "Conan Detective EP90", "đ 20.000", "Đã bán 200"));
-        comicModels.add(new comic_model(R.drawable.conan3, "Conan Detective EP60", "đ 24.000", "Đã bán 150"));
-        comicModels.add(new comic_model(R.drawable.bayvienngocrong, "Dragon Ball 2", "đ 27.000", "Đã bán 240"));
-        comicModels.add(new comic_model(R.drawable.bayvienngocrong3, "Dragon Ball 3", "đ 22.100", "Đã bán 270"));
-        comicModels.add(new comic_model(R.drawable.naruto, "Naruto", "đ 23.200", "Đã bán 80"));
-        comicModels.add(new comic_model(R.drawable.naruto2, "Naruto 2", "đ 22.500", "Đã bán 300"));
-        comicModels.add(new comic_model(R.drawable.bayvienngocrong, "Dragon Ball Super 3", "đ 25.900", "Đã bán 270"));
+        comicModels.add(new comic_model(R.drawable.conan, "Conan Detective EP80", "$ 20", "Sold 200"));
+        comicModels.add(new comic_model(R.drawable.bayvienngocrong2, "Dragon Ball ", "$ 18", "Sold 120"));
+        comicModels.add(new comic_model(R.drawable.conanmoi, "Conan Detective EP90", "$ 16", "Sold 200"));
+        comicModels.add(new comic_model(R.drawable.conan3, "Conan Detective EP60", "$ 19", "Sold 150"));
+        comicModels.add(new comic_model(R.drawable.bayvienngocrong, "Dragon Ball 2", "$ 18", "Sold 240"));
+        comicModels.add(new comic_model(R.drawable.bayvienngocrong3, "Dragon Ball 3", "$ 22", "Sold 270"));
+        comicModels.add(new comic_model(R.drawable.naruto, "Naruto", "$ 16", "Sold 80"));
+        comicModels.add(new comic_model(R.drawable.naruto2, "Naruto 2", "$ 16", "Sold 300"));
+        comicModels.add(new comic_model(R.drawable.bayvienngocrong, "Dragon Ball Super 3", "& 21", "Sold 270"));
         // Add more items as needed
 
         return comicModels;
