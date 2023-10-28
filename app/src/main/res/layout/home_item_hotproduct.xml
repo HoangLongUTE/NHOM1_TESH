@@ -45,6 +45,7 @@
             android:textColor="@color/black"
             android:textSize="10dp"
             android:textAlignment="textEnd"
+            android:layout_marginRight="10dp"
         />
     </LinearLayout>
 </LinearLayout>

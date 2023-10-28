@@ -7,14 +7,17 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tesh.Cart.Cart;
 import com.example.tesh.fragment.FragmentHome;
 
 public class fragment_detail_product extends AppCompatActivity {
     AppCompatButton btn_plus,btn_minus,btn_buy;
-    AppCompatImageButton btn_back,btn_go_to_cart,btn_chat,btn_add_favorite,btn_add_to_cart;
+    AppCompatImageButton btn_chat,btn_add_favorite,btn_add_to_cart;
+    ImageView btn_back,btn_go_to_cart;
     TextView txt_quantity;
     int quantity = 1;
     @Override
@@ -65,7 +68,7 @@ public class fragment_detail_product extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(fragment_detail_product.this, "Đi tới giỏ hàng", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(fragment_detail_product.this, Cart.class);
             }
         });
         btn_chat.setOnClickListener(new View.OnClickListener() {

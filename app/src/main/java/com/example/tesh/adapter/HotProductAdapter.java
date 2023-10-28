@@ -1,5 +1,7 @@
 package com.example.tesh.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tesh.R;
+import com.example.tesh.fragment_detail_product;
 import com.example.tesh.item.HotProductItem;
 
 import java.util.List;
@@ -34,6 +37,15 @@ public class HotProductAdapter extends RecyclerView.Adapter<HotProductAdapter.Vi
         holder.tvName.setText(hotProductItem.getName());
         holder.tvPrice.setText(hotProductItem.getPrice());
         holder.tvNumSold.setText("Sold " + hotProductItem.getNumSold());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view ) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, fragment_detail_product.class );
+                intent.putExtra("Detective Conan", hotProductItem.getImageResource());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

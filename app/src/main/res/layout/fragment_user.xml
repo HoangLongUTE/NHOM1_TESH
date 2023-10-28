@@ -25,7 +25,7 @@
             android:fontFamily="@font/julius_sans_one"
             android:text="PROFILE"
             android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textSize="20dp"
             />
 
         <ImageButton
@@ -46,12 +46,14 @@
 
 
     </RelativeLayout>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.84">
     <LinearLayout
         android:id="@+id/center_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.92"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         >
 
@@ -183,9 +185,14 @@
             android:layout_gravity="center"
             android:fontFamily="@font/julius_sans_one"
             android:padding="10dp"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textColor="@color/black"/>
 
 
     </LinearLayout>
-
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.08"/>
 </LinearLayout>

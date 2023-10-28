@@ -16,41 +16,30 @@
         android:layout_alignParentTop="true"
         android:background="@color/endcolor"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:paddingRight="20dp"
+        android:gravity="center_vertical">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:background="@android:color/transparent"
-            android:padding="10dp"
-            android:src="@drawable/back" />
+      <ImageView
+          android:id="@+id/btn_back"
+          android:layout_width="24dp"
+          android:layout_height="24dp"
+          android:src="@drawable/back"
+          android:layout_alignParentLeft="true"/>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/btn_go_to_cart"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/shopping_cart"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true">
+            android:layout_marginRight="50dp"/>
+        <ImageView
+            android:id="@+id/btn_share"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/share"
+            android:layout_alignParentRight="true"/>
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_go_to_cart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:padding="10dp"
-                android:src="@drawable/shopping_cart"
-                />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:background="@android:color/transparent"
-                android:padding="10dp"
-                android:src="@drawable/share" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -150,27 +139,26 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_minus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@drawable/bg_border_black"
                         android:text="-"
                         android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/txt_quantity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@drawable/bg_border_black"
-                        android:paddingHorizontal="20dp"
-                        android:paddingVertical="15dp"
+                        android:padding="5dp"
                         android:text="1"
                         android:textAlignment="center"
                         android:textColor="@color/black" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_plus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@drawable/bg_border_black"
                         android:text="+"
                         android:textColor="@color/black" />
@@ -201,12 +189,13 @@
                     android:layout_marginTop="20dp"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
-                    android:text="Truyện hay tâm lí đối với các bậc phụ huyen \n1. Ý nghĩa \n
+                    android:text="Truyện hay tâm lí đối với các bậc phụ huynh \n1. Ý nghĩa \n
                     - Có nhiều ý nghĩa sâu xa\n
                     - Giảm khoảng cách giữa các thế hệ\n
                     - Giúp cuộc sống muôn màu muôn vẻ\n
                     - Tạo góc nhiều sâu hơn cho con cái\n2. Nhà xuất bản:Nhà xuất bản nhi đồng\n3. Số trang: 1002 trang\n4. Tài liệu tham khảo: Đắc nhân tâm"
-                    />
+
+                    android:layout_margin="15dp"/>
 
             </LinearLayout>
 

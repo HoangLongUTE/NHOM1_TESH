@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
+import com.example.tesh.Cart.Cart;
+import com.example.tesh.MessageActivity;
 import com.example.tesh.adapter.HotProductAdapter;
 import com.example.tesh.item.CategoryItem;
 import com.example.tesh.R;
@@ -26,7 +28,7 @@ import java.util.List;
 public class FragmentHome extends Fragment {
 
 
-    ImageView btn_to_cart;
+    ImageView btn_cart, btn_mess;
     ViewFlipper imageslider;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,21 +77,27 @@ public class FragmentHome extends Fragment {
         HotProductAdapter hotProductAdapter = new HotProductAdapter(hotProductItems);
         rcvHotProduct.setAdapter(hotProductAdapter);
 
-
-
-
-
-        btn_to_cart = view.findViewById(R.id.btn_cart);
-        btn_to_cart.setOnClickListener(new View.OnClickListener() {
+        btn_cart= view.findViewById(R.id.btn_cart);
+        btn_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Cart.class);
-                startActivity(intent);
+                startActivity( intent);
+            }
+        });
+        btn_mess= view.findViewById(R.id.btn_mess);
+        btn_mess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MessageActivity.class);
+                startActivity( intent);
             }
         });
 
+
         return view;
     }
+
 
     public void flipperimage (int image){
         ImageView imageView = new ImageView(requireContext());

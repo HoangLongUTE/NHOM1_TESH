@@ -71,6 +71,8 @@
                 android:textColorHint="@color/black"
                 android:background="@drawable/border_rounded_mess"
                 android:layout_toLeftOf="@+id/mess_avatar1"
+                android:padding="5dp"
+                android:layout_marginLeft="20dp"
                 />
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -80,7 +82,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/avt2"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="230dp"
             android:layout_marginLeft="15dp"
             app:shapeAppearanceOverlay="@style/roundOutline1" />
 
@@ -89,11 +91,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Hết em."
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="230dp"
             android:textColorHint="@color/black"
             android:background="@drawable/border_rounded_mess"
             android:layout_toRightOf="@+id/mess_avatar2"
             android:layout_marginLeft="10dp"
+            android:padding="5dp"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -105,6 +108,7 @@
             android:layout_toRightOf="@+id/mess_avatar2"
             android:layout_below="@+id/text1"
             android:layout_marginLeft="10dp"
+            android:padding="5dp"
             />
 
     </RelativeLayout>
