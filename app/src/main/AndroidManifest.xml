@@ -28,6 +28,12 @@
             android:name=".comic_product"
             android:exported="false" />
         <activity
+            android:name=".fragment_detail_product"
+            android:exported="false" />
+        <activity
+            android:name=".Test"
+            android:exported="false" />
+        <activity
             android:name=".auth.FacebookAuthActivity"
             android:exported="false" />
         <activity
