@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -14,7 +15,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tesh.MainActivity;
 import com.example.tesh.R;
+import com.example.tesh.detail_cart;
 import com.example.tesh.fragment.FragmentHome;
 import com.example.tesh.profile;
 
@@ -30,6 +33,7 @@ public class Cart extends AppCompatActivity {
     static ImageButton imgthungrac;
     static cartadapter adapter;
     ImageView btn_to_home;
+    Button btn_to_detailcart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +45,22 @@ public class Cart extends AppCompatActivity {
         imgthungrac=(ImageButton) findViewById(R.id.bin);
         cbxtotal=(CheckBox) findViewById(R.id.cbxall);
         btn_to_home=(ImageView)findViewById(R.id.imgback);
+        btn_to_detailcart = (Button) findViewById(R.id.btnpay);
+
 
         btn_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Cart.this, FragmentHome.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(Cart.this, MainActivity.class);
+                startActivity(intent1);
+            }
+        });
+
+        btn_to_detailcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(Cart.this, detail_cart.class);
+                startActivity(intent2);
             }
         });
 

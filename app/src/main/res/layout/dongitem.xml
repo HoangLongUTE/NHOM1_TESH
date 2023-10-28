@@ -105,7 +105,7 @@
                 android:gravity="center"
                 android:backgroundTint="#66EEDCC6"
                 android:background="@drawable/ic_remove_item"
-                android:text="-"
+                
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -126,7 +126,7 @@
                 android:layout_height="40dp"
                 android:backgroundTint="#66EEDCC6"
                 android:background="@drawable/ic_add_item"
-                android:text="+"
+
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold" />
