@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
+
     <!--tools:context=".fragment.Fragment_product_comic">-->
     <RelativeLayout
         android:id="@+id/header_layout"
@@ -41,7 +43,7 @@
         android:id="@+id/center_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.85"
+        android:layout_weight="0.92"
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -51,13 +53,5 @@
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"/>
     </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/footer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.07"
-        android:background="@color/white"
-        ></RelativeLayout>
 
 </LinearLayout>

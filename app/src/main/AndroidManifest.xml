@@ -25,6 +25,9 @@
             android:exported="false" />
 
         <activity
+            android:name=".comic_product"
+            android:exported="false" />
+        <activity
             android:name=".auth.FacebookAuthActivity"
             android:exported="false" />
         <activity

@@ -58,15 +58,15 @@ public class FragmentFavorite extends Fragment {
     private List<favorite_model> getlist_favorite() {
         List<favorite_model> favoriteModels = new ArrayList<>();
         // Add your favorite_model objects here
-        favoriteModels.add(new favorite_model(R.drawable.figure, "Figure Naruto", "đ 800.000", "Đã bán 200"));
-        favoriteModels.add(new favorite_model(R.drawable.mohinh, "MG 1/100 Wing GunDam", "đ 500.000", "Đã bán 120"));
-        favoriteModels.add(new favorite_model(R.drawable.stickergenshin, "Sticker Genshin", "đ 300.000", "Đã bán 200"));
-        favoriteModels.add(new favorite_model(R.drawable.monkeyluffy, "Kaido", "đ 600.000", "Đã bán 150"));
-        favoriteModels.add(new favorite_model(R.drawable.onepiece, "OnePiece", "đ 700.000", "Đã bán 240"));
-        favoriteModels.add(new favorite_model(R.drawable.figure, "Naruto", "đ 650.000", "Đã bán 270"));
-        favoriteModels.add(new favorite_model(R.drawable.stickergenshin, "Sticker", "đ 300.000", "Đã bán 80"));
-        favoriteModels.add(new favorite_model(R.drawable.monkeyluffy, "Kaido 2", "đ 550.000", "Đã bán 300"));
-        favoriteModels.add(new favorite_model(R.drawable.bayvienngocrong, "Dragon Ball Super 3", "đ 25.900", "Đã bán 270"));
+        favoriteModels.add(new favorite_model(R.drawable.figure, "Figure Naruto", "$ 14", "Sold 200"));
+        favoriteModels.add(new favorite_model(R.drawable.mohinh, "Wing GunDam", "$ 10", "Sold 120"));
+        favoriteModels.add(new favorite_model(R.drawable.stickergenshin, "Sticker Genshin", "$ 16", "Sold 200"));
+        favoriteModels.add(new favorite_model(R.drawable.monkeyluffy, "Kaido", "$ 12", "Sold 150"));
+        favoriteModels.add(new favorite_model(R.drawable.onepiece, "OnePiece", "$ 11", "Sold 240"));
+        favoriteModels.add(new favorite_model(R.drawable.figure, "Naruto", "$ 10", "Sold 270"));
+        favoriteModels.add(new favorite_model(R.drawable.stickergenshin, "Sticker", "$ 12", "Sold 80"));
+        favoriteModels.add(new favorite_model(R.drawable.monkeyluffy, "Kaido 2", "$ 10", "Sold 300"));
+        favoriteModels.add(new favorite_model(R.drawable.bayvienngocrong, "Dragon Ball Super 3", "$ 15", "Sold 270"));
         // Add more items as needed
 
         return favoriteModels;
