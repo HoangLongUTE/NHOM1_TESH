@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
+import com.example.tesh.Cart.Cart;
+import com.example.tesh.MessageActivity;
 import com.example.tesh.adapter.HotProductAdapter;
 import com.example.tesh.item.CategoryItem;
 import com.example.tesh.R;
@@ -25,7 +27,7 @@ import java.util.List;
 
 public class FragmentHome extends Fragment {
 
-
+    ImageView btn_to_mess;
     ImageView btn_to_cart;
     ViewFlipper imageslider;
     @Override
@@ -75,10 +77,17 @@ public class FragmentHome extends Fragment {
         HotProductAdapter hotProductAdapter = new HotProductAdapter(hotProductItems);
         rcvHotProduct.setAdapter(hotProductAdapter);
 
+        //chuyen sang trang mess
+        btn_to_mess = view.findViewById(R.id.btn_mess);
+        btn_to_mess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MessageActivity.class);
+                startActivity(intent);
+            }
+        });
 
-
-
-
+        // chuyen sang trang cart
         btn_to_cart = view.findViewById(R.id.btn_cart);
         btn_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override

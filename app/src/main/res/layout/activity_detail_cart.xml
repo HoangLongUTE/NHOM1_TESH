@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".detail_cart">
+
+    <RelativeLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FFFEC400"
+        android:layout_weight="0.08">
+
+        <ImageView
+            android:id="@+id/imgbackbi"
+            android:src="@drawable/ic_back"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="BILL"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_weight="0.8"
+        android:layout_below="@+id/menu"
+        android:layout_above="@+id/cost"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <RelativeLayout
+            android:id="@+id/profile1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:id="@+id/ic_location"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_location"/>
+
+            <TextView
+                android:id="@+id/name_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nguyen Duc Truyen (+84)08******32"
+                android:layout_marginRight="25dp"
+                android:layout_toRightOf="@id/ic_location"
+                android:textColor="@color/black"
+                android:textSize="19dp"/>
+
+            <TextView
+                android:id="@+id/edit_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:layout_toRightOf="@id/name_phone"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile1"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="435/105 Tran Cao Van \nXuan Ha, Thanh Khe, Da Nang, Viet Nam"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"/>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/copper"
+            android:layout_below="@id/profile2"
+            android:layout_marginTop="10dp"
+            />
+
+        <RelativeLayout
+            android:id="@+id/list_sp"
+            android:background="@drawable/border_inputchat"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line">
+
+
+            <ImageView
+                android:id="@+id/imgsp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/bayvienngocrong" />
+
+            <TextView
+                android:id="@+id/txtnamesp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgsp"
+                android:text="Dragon Ball ep107"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"/>
+
+
+            <ImageView
+                android:id="@+id/imgstarsp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/imgsp"
+                android:layout_below="@+id/txtnamesp"
+                android:src="@drawable/starken"
+                android:layout_width="15dp"
+                android:layout_height="15dp"/>
+
+            <TextView
+                android:id="@+id/txtevaspken"
+                android:layout_toRightOf="@+id/imgstarsp"
+                android:layout_below="@+id/txtnamesp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#B4000000"
+                android:textSize="15sp"
+                android:text="4.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtdolar"
+                android:layout_toRightOf="@+id/imgsp"
+                android:layout_below="@+id/imgstarsp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="$"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtpricesp"
+                android:text="19"
+                android:layout_toRightOf="@+id/txtdolar"
+                android:layout_below="@+id/imgstarsp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="2dp"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+            <LinearLayout
+                android:id="@+id/quantitycart"
+                android:layout_marginTop="80dp"
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/numner"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@null"
+                    android:text="1"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list_sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:id="@+id/location_send"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_location"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="From   Thanh Oai"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                android:layout_toRightOf="@+id/location_send"
+                android:layout_marginLeft="15dp"/>
+
+            <ImageView
+                android:id="@+id/ic_clock"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_clock"
+                android:layout_below="@+id/location_send"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estimated time of arrival: Oct 39 - Nov 1"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:layout_toRightOf="@+id/ic_clock"
+                android:layout_below="@+id/location_send"
+                android:layout_marginLeft="15dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/cost"
+        android:layout_marginTop="5dp"
+        android:background="#FFFEC400"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.12">
+        <TextView
+            android:id="@+id/txttotal"
+            android:layout_marginLeft="10dp"
+            android:text="TOTAL"
+            android:textStyle="bold"
+            android:background="@drawable/border_radius_white"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/txtmoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="120dp"
+            android:layout_toLeftOf="@+id/btnconfirm"
+            android:text="19"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/itdolar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/txtmoney"
+            android:text="$"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnconfirm"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="CONFIRM"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:background="@drawable/border_rounded_mess"
+            android:layout_width="150dp"
+            android:layout_height="50dp"/>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
