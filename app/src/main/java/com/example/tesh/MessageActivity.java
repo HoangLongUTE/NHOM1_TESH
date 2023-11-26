@@ -21,7 +21,7 @@ public class MessageActivity extends AppCompatActivity {
         btn_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MessageActivity.this, FragmentHome.class);
+                Intent intent = new Intent(MessageActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
