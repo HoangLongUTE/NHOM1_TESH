@@ -61,5 +61,10 @@ dependencies {
     androidTestImplementation("androidx.recyclerview:recyclerview:1.2.1")
     androidTestImplementation("androidx.cardview:cardview:1.0.0")
 
+    implementation ("com.google.android.material:material:1.2.1")
+
+
+
+
 
 }
