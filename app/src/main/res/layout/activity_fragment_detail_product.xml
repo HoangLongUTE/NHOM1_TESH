@@ -291,7 +291,6 @@
             android:background="@drawable/bg_yellow_rounded"
             android:padding="10dp"
             android:src="@drawable/messenger"
-
             />
 
         <androidx.appcompat.widget.AppCompatImageButton

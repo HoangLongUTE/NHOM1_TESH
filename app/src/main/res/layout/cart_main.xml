@@ -48,7 +48,7 @@
             android:layout_centerVertical="true"/>
     </RelativeLayout>
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listviewitem"
         android:layout_weight="0.8"
         android:layout_below="@+id/menu"

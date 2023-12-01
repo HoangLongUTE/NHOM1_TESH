@@ -17,6 +17,8 @@ import com.example.tesh.fragment.FragmentNotification;
 import com.example.tesh.fragment.FragmentUser;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         pagerMain=findViewById(R.id.pagerMain);
         bottomNav=findViewById(R.id.bottomNav);
 
