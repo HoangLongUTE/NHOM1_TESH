@@ -1,6 +1,7 @@
 package com.example.tesh.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tesh.R;
+import com.example.tesh.activity_favorite_detail;
 import com.example.tesh.model.favorite_model;
-import com.google.firebase.firestore.auth.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder> {
@@ -41,7 +41,22 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         holder.titleTextView.setText(favorite.getTitle_fv());
         holder.priceTextView.setText(favorite.getPrice_fv());
         holder.sellTextView.setText(favorite.getSell_fv());
+        // Sự kiện click để mở trang chi tiết
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Chuyển đến Activity chi tiết
+
+                Intent intent = new Intent(context, activity_favorite_detail.class);
+                intent.putExtra("imageResourceId", favorite.getResourceId_fv());
+                intent.putExtra("title", favorite.getTitle_fv());
+                intent.putExtra("price", favorite.getPrice_fv());
+                intent.putExtra("sell", favorite.getSell_fv());
+                context.startActivity(intent);
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
