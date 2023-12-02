@@ -47,7 +47,6 @@ dependencies {
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
 
-
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
@@ -61,6 +60,9 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     androidTestImplementation("androidx.recyclerview:recyclerview:1.2.1")
     androidTestImplementation("androidx.cardview:cardview:1.0.0")
+    implementation ("com.firebaseui:firebase-ui-database:8.0.2")
+    implementation ("com.github.bumptech.glide:glide:4.12.0") // Thay đổi phiên bản theo phiên bản mới nhất
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation ("com.google.android.material:material:1.2.1")
 
