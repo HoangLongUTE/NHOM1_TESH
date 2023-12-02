@@ -35,6 +35,7 @@ public class activity_edit_profile extends AppCompatActivity {
     EditText editGender;
     EditText editGmail;
     EditText editAddress;
+    EditText editPhone;
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri imageUri;
@@ -49,7 +50,23 @@ public class activity_edit_profile extends AppCompatActivity {
         editGender = findViewById(R.id.edit_gender);
         editGmail = findViewById(R.id.edit_gmail);
         editAddress = findViewById(R.id.edit_address);
+        editPhone = findViewById(R.id.edit_phone);
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            String currentUsername = intent.getStringExtra("currentUsername");
+            String currentGender = intent.getStringExtra("currentGender");
+            String currentGmail = intent.getStringExtra("currentGmail");
+            String currentAddress = intent.getStringExtra("currentAddress");
+            String currentPhone = intent.getStringExtra("currentPhone");
+
+            // Đặt dữ liệu vào các EditText
+            editUsername.setText(currentUsername);
+            editGender.setText(currentGender);
+            editGmail.setText(currentGmail);
+            editAddress.setText(currentAddress);
+            editPhone.setText(currentPhone);
+        }
         profile_image = findViewById(R.id.profile_image); // Chú ý đặt ID phù hợp
 
         bselectprofileimage = findViewById(R.id.b_select_profile_image);
@@ -85,6 +102,7 @@ public class activity_edit_profile extends AppCompatActivity {
                 String updatedGender = editGender.getText().toString();
                 String updatedGmail = editGmail.getText().toString();
                 String updatedAddress = editAddress.getText().toString();
+                String updatedPhone = editPhone.getText().toString();
 
                 // Tạo Intent để chứa dữ liệu cập nhật
                 Intent resultIntent = new Intent();
@@ -92,6 +110,7 @@ public class activity_edit_profile extends AppCompatActivity {
                 resultIntent.putExtra("updatedGender", updatedGender);
                 resultIntent.putExtra("updatedGmail", updatedGmail);
                 resultIntent.putExtra("updatedAddress", updatedAddress);
+                resultIntent.putExtra("updatedPhone", updatedPhone);
 
                 // Set kết quả là OK và chứa dữ liệu cập nhật
                 setResult(RESULT_OK, resultIntent);

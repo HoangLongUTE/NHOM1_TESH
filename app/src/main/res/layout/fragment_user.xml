@@ -129,10 +129,41 @@
                     android:fontFamily="@font/poppins_bold"/>
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone number"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/t_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/phone"
+                    android:layout_alignParentRight="true"
+                    android:text="0905123123"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/bgr_listview"
+                    android:textSize="18dp"
+                    android:padding="10dp"
+                    android:fontFamily="@font/poppins_bold"/>
+            </RelativeLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gmail"
+                android:layout_marginTop="15dp"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:layout_marginLeft="30dp"/>
