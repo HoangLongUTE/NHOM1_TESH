@@ -5,6 +5,7 @@ public class favorite_model {
     private String title_fv;
     private String price_fv;
     private String sell_fv;
+    private String itemId;
 
     public favorite_model(int resourceId_fv, String title_fv, String price_fv, String sell_fv) {
         this.resourceId_fv= resourceId_fv;
@@ -44,6 +45,9 @@ public class favorite_model {
     public void setSell_fv(String sell_fv) {
         this.sell_fv = sell_fv;
     }
-}
+    public String getItemId() {
+        return itemId;
+    }
 
+}
 

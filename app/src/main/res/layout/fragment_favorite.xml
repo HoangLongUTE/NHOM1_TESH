@@ -32,19 +32,19 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.84">
-    <LinearLayout
-        android:id="@+id/center_layout_fv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rev_favorite"
+        <LinearLayout
+            android:id="@+id/center_layout_fv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rev_favorite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
     </ScrollView>
 
     <LinearLayout
