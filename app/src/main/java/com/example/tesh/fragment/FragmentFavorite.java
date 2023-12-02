@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -28,16 +29,32 @@ public class FragmentFavorite extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
         recyclerView = view.findViewById(R.id.rev_favorite);
 
-
         List<favorite_model> existingFavoriteList = getlist_favorite();
         favoriteAdapter = new FavoriteAdapter(getActivity(), existingFavoriteList);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2)); // 2 columns grid layout
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(favoriteAdapter);
 
         // Load dữ liệu từ FavoriteManager vào favoriteList
         List<favorite_model> newFavoriteList = FavoriteManager.getFavoriteList();
         existingFavoriteList.addAll(newFavoriteList);
         favoriteAdapter.notifyDataSetChanged();
+
+        // Thêm sự kiện Long Click cho RecyclerView
+        recyclerView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                // Lấy vị trí của item được nhấn giữ
+                int position = recyclerView.getChildAdapterPosition(v);
+
+                if (position != RecyclerView.NO_POSITION) {
+                    // Xóa item từ danh sách và cập nhật RecyclerView
+                    removeItem(position);
+                    return true; // Đã xử lý sự kiện
+                }
+
+                return false; // Chưa xử lý sự kiện
+            }
+        });
 
         return view;
     }
@@ -57,5 +74,12 @@ public class FragmentFavorite extends Fragment {
         // Add more items as needed
 
         return favoriteModels;
+    }
+
+    // Xóa item khỏi danh sách và thông báo cập nhật
+    private void removeItem(int position) {
+        FavoriteManager.removeFromFavorites(String.valueOf(favoriteAdapter.getItemId(position)));
+        favoriteAdapter.removeItem(position);
+        Toast.makeText(getActivity(), "Item removed", Toast.LENGTH_SHORT).show();
     }
 }
