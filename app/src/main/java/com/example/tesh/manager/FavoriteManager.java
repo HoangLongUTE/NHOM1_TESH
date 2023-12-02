@@ -16,7 +16,6 @@ public class FavoriteManager {
         favoriteList.add(favorite);
     }
 
-
     // Kiểm tra xem một item có trong danh sách yêu thích hay không
     public static boolean checkIfItemExists(favorite_model favorite) {
         for (favorite_model item : favoriteList) {
@@ -27,5 +26,10 @@ public class FavoriteManager {
         }
         // Mục không tồn tại trong danh sách yêu thích
         return false;
+    }
+
+    // Triển khai hàm removeFromFavorites
+    public static void removeFromFavorites(favorite_model removedItem) {
+        favoriteList.remove(removedItem);
     }
 }
