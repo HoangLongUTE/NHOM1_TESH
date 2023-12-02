@@ -38,13 +38,15 @@ public class FragmentUser extends Fragment {
     private static final int EDIT_PROFILE_REQUEST_CODE = 1;
     private static final int PICK_IMAGE_REQUEST = 1;
 
-
+    private static final String IMAGE_URI_KEY = "imageUri";
+    private Uri imageUri;
     ImageView buttonMenu;
     ImageView btPen;
     TextView tUsername;
     TextView tGender;
     TextView tGmail;
     TextView tAddress;
+    TextView tPhone;
     ImageView profile_image; // Add this line to declare profile_image
 
 
@@ -58,6 +60,7 @@ public class FragmentUser extends Fragment {
         tGender = rootView.findViewById(R.id.t_gender);
         tGmail = rootView.findViewById(R.id.t_gmail);
         tAddress = rootView.findViewById(R.id.t_address);
+        tPhone = rootView.findViewById(R.id.t_phone);
         profile_image = rootView.findViewById(R.id.img_profile); // Add this line
 
         buttonMenu = rootView.findViewById(R.id.button_menu);
@@ -105,6 +108,7 @@ public class FragmentUser extends Fragment {
                 bottomSheetDialog.dismiss();  // Đóng bottom sheet sau khi chuyển trang
             }
         });
+        
 
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
@@ -117,6 +121,7 @@ public class FragmentUser extends Fragment {
         intent.putExtra("currentGender", tGender.getText().toString());
         intent.putExtra("currentGmail", tGmail.getText().toString());
         intent.putExtra("currentAddress", tAddress.getText().toString());
+        intent.putExtra("currentPhone", tPhone.getText().toString());
 
 
         Drawable drawable = profile_image.getDrawable();
@@ -139,19 +144,22 @@ public class FragmentUser extends Fragment {
             String updatedGender = data.getStringExtra("updatedGender");
             String updatedGmail = data.getStringExtra("updatedGmail");
             String updatedAddress = data.getStringExtra("updatedAddress");
+            String updatedPhone = data.getStringExtra("updatedPhone");
 
             tUsername.setText(updatedUsername);
             tGender.setText(updatedGender);
             tGmail.setText(updatedGmail);
             tAddress.setText(updatedAddress);
+            tPhone.setText(updatedPhone);
         }
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
-            String imageUriString = data.getStringExtra("imageUri");
+            String updatedImageUriString = data.getStringExtra(IMAGE_URI_KEY);
+            if (updatedImageUriString != null) {
+                Uri updatedImageUri = Uri.parse(updatedImageUriString);
+                profile_image.setImageURI(updatedImageUri);
+                this.imageUri = updatedImageUri;
 
-            if (imageUriString != null) {
-                Uri imageUri = Uri.parse(imageUriString);
-                profile_image.setImageURI(imageUri);
             }
         }
     }

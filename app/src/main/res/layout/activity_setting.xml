@@ -44,12 +44,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.84">
+
         <LinearLayout
             android:id="@+id/center_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -67,11 +67,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bgr_listview"
-                android:layout_margin="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+
                 >
 
                 <LinearLayout
-                    android:id="@+id/khung_1"
+                    android:id="@+id/khung_Account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -109,11 +112,11 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/khung_2"
+                    android:id="@+id/khung_Privacy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_below="@+id/khung_1"
+                    android:layout_below="@+id/khung_Account"
                     >
 
                     <ImageView
@@ -150,7 +153,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/khung_2"
+                    android:layout_below="@+id/khung_Privacy"
                     >
 
                     <ImageView
@@ -185,9 +188,150 @@
                 </LinearLayout>
             </RelativeLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Support and referrals"
+                android:textColor="@color/black"
+                android:paddingTop="20dp"
+                android:paddingLeft="30dp"
+                android:paddingBottom="10dp"
+                android:textSize="18dp"
+                android:fontFamily="@font/poppins_bold"
+                />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bgr_listview"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+
+                >
+
+                <LinearLayout
+                    android:id="@+id/khung_Support"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="10dp"
+                        android:clickable="true"
+                        android:src="@drawable/baseline_report_24" />
+
+                    <TextView
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:text="Reported problems
+"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:fontFamily="@font/julius_sans_one"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:src="@drawable/next" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/khung_referrals"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/khung_Support"
+                    >
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="10dp"
+                        android:clickable="true"
+                        android:src="@drawable/baseline_contact_support_24" />
+
+                    <TextView
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:text="Support"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:fontFamily="@font/julius_sans_one"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:src="@drawable/next" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/khung_referrals"
+                    >
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="10dp"
+                        android:clickable="true"
+                        android:src="@drawable/baseline_headset_mic_24" />
+
+                    <TextView
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:text="Introduce"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:fontFamily="@font/julius_sans_one"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:src="@drawable/next" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
 
 
         </LinearLayout>
+
+
+
     </ScrollView>
     <LinearLayout
         android:layout_width="match_parent"
