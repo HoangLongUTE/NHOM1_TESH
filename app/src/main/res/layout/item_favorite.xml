@@ -35,27 +35,25 @@
             android:maxLines="2" />
 
 
-            <TextView
-                android:id="@+id/tv_price_fv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="đ 75 000"
-                android:textSize="15dp"
-                android:textColor="@color/centercolor" />
+        <TextView
+            android:id="@+id/tv_price_fv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="đ 75 000"
+            android:textSize="15dp"
+            android:textColor="@color/centercolor" />
 
-            <TextView
-                android:id="@+id/tv_sell_fv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sold 134"
-                android:textColor="@color/black"
-                android:textSize="10dp"
-                android:textAlignment="textEnd"
-                android:layout_marginRight="10dp"/>
-
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_sell_fv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sold 134"
+            android:textColor="@color/black"
+            android:textSize="10dp"
+            android:textAlignment="textEnd"
+            android:layout_marginRight="10dp"/>
 
 
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

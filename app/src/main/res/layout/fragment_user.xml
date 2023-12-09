@@ -25,174 +25,210 @@
             android:fontFamily="@font/julius_sans_one"
             android:text="PROFILE"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            />
+            android:textSize="25dp" />
 
-        <ImageButton
+
+        <ImageView
             android:id="@+id/bt_pen"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
-            android:background="@drawable/pen"
+            android:background="@drawable/baseline_edit_24"
             android:layout_centerVertical="true"/>
-        <!--        android:text="Button Text"  Thay đổi văn bản trên Button -->
-        <!--        android:textColor="@color/your_button_text_color" &lt;!&ndash; Thay đổi màu văn bản của Button &ndash;&gt;-->
-        <!--        android:textSize="16sp" &lt;!&ndash; Thay đổi kích thước văn bản &ndash;&gt;-->
-        <!--        android:onClick="yourButtonClickHandler" &lt;!&ndash; Đặt sự kiện xử lý khi Button được nhấn &ndash;&gt;-->
-        <!--        android:layout_centerVertical="true" &lt;!&ndash; Đặt Button ở giữa theo chiều dọc &ndash;&gt;-->
-        <!--        android:layout_toLeftOf="@id/button" &lt;!&ndash; Đặt Button ở bên phải của "header_layout" &ndash;&gt;-->
-        <!--        android:layout_marginRight="10dp" &lt;!&ndash; Điều chỉnh khoảng cách từ Button đến "header_layout" &ndash;&gt;-->
 
+        <ImageView
+            android:id="@+id/button_menu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/baseline_menu_24"
+            android:clickable="true"
+            android:onClick="showBottomSheetDialog" />
 
     </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.84">
-    <LinearLayout
-        android:id="@+id/center_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/anh_profile"
-            android:layout_marginTop="20dp"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#FF000000"
-            android:layout_gravity="center"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Username"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins_bold"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-            android:textSize="20dp"/>
-
-        <TextView
-            android:id="@+id/t_username"
+        <LinearLayout
+            android:id="@+id/center_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/bgr_listview"
-            android:text="KOD"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:padding="10dp"
-            android:fontFamily="@font/poppins_bold"
-            />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/img_profile"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/anh_profile"
+                android:layout_marginTop="20dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"
+                android:layout_gravity="center"
+                />
 
             <TextView
-                android:id="@+id/gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gender"
+                android:text="Username"
                 android:textColor="@color/black"
-                android:textSize="20dp"
-                android:layout_centerVertical="true" />
-
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="20dp"/>
             <TextView
-                android:id="@+id/t_gender"
-                android:layout_width="0dp"
+                android:id="@+id/t_username"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/gender"
-                android:layout_alignParentRight="true"
-                android:text="Female"
-                android:textColor="@color/black"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
                 android:background="@drawable/bgr_listview"
+                android:text="KOD"
+                android:textColor="@color/black"
                 android:textSize="18dp"
                 android:padding="10dp"
-                android:fontFamily="@font/poppins_bold"/>
-        </RelativeLayout>
+                android:fontFamily="@font/poppins_bold"
+                />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gmail"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_marginLeft="30dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
 
-        <TextView
-            android:id="@+id/t_gmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/bgr_listview"
-            android:text="abc@gmail.com"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:padding="10dp"
-            android:fontFamily="@font/poppins_bold"
-            android:layout_marginBottom="15dp"
-            />
+                <TextView
+                    android:id="@+id/gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gender"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_centerVertical="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Address"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_marginLeft="30dp"/>
+                <TextView
+                    android:id="@+id/t_gender"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/gender"
+                    android:layout_alignParentRight="true"
+                    android:text="Female"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/bgr_listview"
+                    android:textSize="18dp"
+                    android:padding="10dp"
+                    android:fontFamily="@font/poppins_bold"/>
+            </RelativeLayout>
 
-        <TextView
-            android:id="@+id/t_address"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/bgr_listview"
-            android:text="57, X Street, ..."
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:padding="10dp"
-            android:fontFamily="@font/poppins_bold"
-            android:layout_marginBottom="15dp"
-            />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/b_logout"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="Log out"
-            android:background="@drawable/btn_bgr"
-            android:layout_gravity="center"
-            android:fontFamily="@font/julius_sans_one"
-            android:padding="10dp"
-            android:textSize="18dp"
-            android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone number"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_centerVertical="true" />
+
+                <TextView
+                    android:id="@+id/t_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/phone"
+                    android:layout_alignParentRight="true"
+                    android:text="0905123123"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/bgr_listview"
+                    android:textSize="18dp"
+                    android:padding="10dp"
+                    android:fontFamily="@font/poppins_bold"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gmail"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_marginLeft="30dp"/>
+
+            <TextView
+                android:id="@+id/t_gmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bgr_listview"
+                android:text="abc@gmail.com"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:padding="10dp"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginBottom="15dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_marginLeft="30dp"/>
+
+            <TextView
+                android:id="@+id/t_address"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bgr_listview"
+                android:text="57, X Street, ..."
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:padding="10dp"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginBottom="15dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b_logout"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Log out"
+                android:background="@drawable/btn_bgr"
+                android:layout_gravity="center"
+                android:fontFamily="@font/julius_sans_one"
+                android:padding="10dp"
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
 
 
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.08"/>
+
+
 </LinearLayout>
+

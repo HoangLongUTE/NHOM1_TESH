@@ -1,42 +1,24 @@
 package com.example.tesh.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tesh.R;
-import com.example.tesh.adapter.AdapterViewPager;
 import com.example.tesh.adapter.FavoriteAdapter;
-import com.example.tesh.adapter.FavoriteAdapter;
+import com.example.tesh.manager.FavoriteManager;
 import com.example.tesh.model.favorite_model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentNotification#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FragmentFavorite extends Fragment {
-
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private RecyclerView recyclerView;
     private FavoriteAdapter favoriteAdapter;
@@ -47,17 +29,39 @@ public class FragmentFavorite extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
         recyclerView = view.findViewById(R.id.rev_favorite);
 
-        // Initialize your adapter and set it to the RecyclerView
-        favoriteAdapter = new FavoriteAdapter(getActivity(), getlist_favorite());
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2)); // 2 columns grid layout
+        List<favorite_model> existingFavoriteList = getlist_favorite();
+        favoriteAdapter = new FavoriteAdapter(getActivity(), existingFavoriteList);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setAdapter(favoriteAdapter);
+
+        // Load dữ liệu từ FavoriteManager vào favoriteList
+        List<favorite_model> newFavoriteList = FavoriteManager.getFavoriteList();
+        existingFavoriteList.addAll(newFavoriteList);
+        favoriteAdapter.notifyDataSetChanged();
+
+        // Thêm sự kiện Long Click cho RecyclerView
+        recyclerView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                // Lấy vị trí của item được nhấn giữ
+                int position = recyclerView.getChildAdapterPosition(v);
+
+                if (position != RecyclerView.NO_POSITION) {
+                    // Xóa item từ danh sách và cập nhật RecyclerView
+                    removeItem(position);
+                    return true; // Đã xử lý sự kiện
+                }
+
+                return false; // Chưa xử lý sự kiện
+            }
+        });
 
         return view;
     }
 
     private List<favorite_model> getlist_favorite() {
         List<favorite_model> favoriteModels = new ArrayList<>();
-        // Add your favorite_model objects here
+        // Thêm đối tượng favorite_model
         favoriteModels.add(new favorite_model(R.drawable.figure, "Figure Naruto", "$ 14", "Sold 200"));
         favoriteModels.add(new favorite_model(R.drawable.mohinh, "Wing GunDam", "$ 10", "Sold 120"));
         favoriteModels.add(new favorite_model(R.drawable.stickergenshin, "Sticker Genshin", "$ 16", "Sold 200"));
@@ -71,6 +75,11 @@ public class FragmentFavorite extends Fragment {
 
         return favoriteModels;
     }
+
+    // Xóa item khỏi danh sách và thông báo cập nhật
+    private void removeItem(int position) {
+        FavoriteManager.removeFromFavorites(String.valueOf(favoriteAdapter.getItemId(position)));
+        favoriteAdapter.removeItem(position);
+        Toast.makeText(getActivity(), "Item removed", Toast.LENGTH_SHORT).show();
+    }
 }
-
-

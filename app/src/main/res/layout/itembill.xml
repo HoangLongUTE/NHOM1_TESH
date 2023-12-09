@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/list_sp"
+        android:background="@drawable/border_inputchat"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/imgsp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/bayvienngocrong" />
+
+        <TextView
+            android:id="@+id/txtnamesp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imgsp"
+            android:text="Dragon Ball ep107"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"/>
+
+
+        <ImageView
+            android:id="@+id/imgstarsp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/imgsp"
+            android:layout_below="@+id/txtnamesp"
+            android:src="@drawable/starken"
+            android:layout_width="15dp"
+            android:layout_height="15dp"/>
+
+        <TextView
+            android:id="@+id/txtevaspken"
+            android:layout_toRightOf="@+id/imgstarsp"
+            android:layout_below="@+id/txtnamesp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#B4000000"
+            android:textSize="15sp"
+            android:text="4.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtdolar"
+            android:layout_toRightOf="@+id/imgsp"
+            android:layout_below="@+id/imgstarsp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="$"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtpricesp"
+            android:text="19"
+            android:layout_toRightOf="@+id/txtdolar"
+            android:layout_below="@+id/imgstarsp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="2dp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+
+        <LinearLayout
+            android:id="@+id/quantitycart"
+            android:layout_marginTop="80dp"
+            android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/numner"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

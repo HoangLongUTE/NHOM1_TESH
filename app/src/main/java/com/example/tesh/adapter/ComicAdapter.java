@@ -1,6 +1,7 @@
 package com.example.tesh.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tesh.R;
+import com.example.tesh.activity_comic_detail;
 import com.example.tesh.model.comic_model;
-import com.example.tesh.model.favorite_model;
-import com.google.firebase.firestore.auth.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ComicAdapter extends RecyclerView.Adapter<ComicAdapter.ComicViewHolder> {
@@ -42,7 +41,22 @@ public class ComicAdapter extends RecyclerView.Adapter<ComicAdapter.ComicViewHol
         holder.titleTextView.setText(comic.getTitle());
         holder.priceTextView.setText(comic.getPrice());
         holder.sellTextView.setText(comic.getSell());
+
+        // Sự kiện click để mở trang chi tiết
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Chuyển đến Activity chi tiết
+                Intent intent = new Intent(context, activity_comic_detail.class);
+                intent.putExtra("imageResourceId", comic.getResourceId());
+                intent.putExtra("title", comic.getTitle());
+                intent.putExtra("price", comic.getPrice());
+                intent.putExtra("sell", comic.getSell());
+                context.startActivity(intent);
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
