@@ -23,6 +23,8 @@ public class FragmentFavorite extends Fragment {
     private RecyclerView recyclerView;
     private FavoriteAdapter favoriteAdapter;
 
+    List<favorite_model> existingFavoriteList = new ArrayList<>(getlist_favorite());
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,8 +80,15 @@ public class FragmentFavorite extends Fragment {
 
     // Xóa item khỏi danh sách và thông báo cập nhật
     private void removeItem(int position) {
-        FavoriteManager.removeFromFavorites(String.valueOf(favoriteAdapter.getItemId(position)));
+        // Lấy itemId của item cần xóa
+        String itemId = String.valueOf(favoriteAdapter.getItemId(position));
+
+        // Xóa item từ FavoriteManager và cập nhật RecyclerView
+        FavoriteManager.removeFromFavorites(itemId);
         favoriteAdapter.removeItem(position);
+
+        // Hiển thị thông báo
         Toast.makeText(getActivity(), "Item removed", Toast.LENGTH_SHORT).show();
     }
+
 }

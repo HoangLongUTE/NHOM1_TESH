@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tesh.R;
 import com.example.tesh.activity_favorite_detail;
+import com.example.tesh.manager.FavoriteManager;
 import com.example.tesh.model.favorite_model;
 
 import java.util.List;
@@ -99,6 +100,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         favoriteList.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, getItemCount());
+
+        // Cập nhật danh sách trong FavoriteManager
+        FavoriteManager.updateFavoritesList(favoriteList);
     }
 
     public static class FavoriteViewHolder extends RecyclerView.ViewHolder {
