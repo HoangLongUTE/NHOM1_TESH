@@ -1,5 +1,6 @@
 package com.example.tesh;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,6 +24,7 @@ public class SignupActivity extends AppCompatActivity {
 
     Button btnSignup;
     TextInputEditText et_UserName, et_Password, et_ComfirmPassword, et_Email;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://teshstorebykod-43-default-rtdb.asia-southeast1.firebasedatabase.app/");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +52,29 @@ public class SignupActivity extends AppCompatActivity {
                 } else if (!isValidEmail(email)) {
                     Toast.makeText(SignupActivity.this, "Địa chỉ email không hợp lệ", Toast.LENGTH_SHORT).show();
                 } else {
+                    databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.hasChild(username)){
+                                Toast.makeText(SignupActivity.this, "Username exist", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                databaseReference.child("users").child(username).child("email").setValue(email);
+                                databaseReference.child("users").child(username).child("password").setValue(password);
+                                databaseReference.child("users").child(username).child("comfirmpassword").setValue(comfirmpassword);
+
+                                Toast.makeText(SignupActivity.this, "Đăng ký thành công ", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
                     Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
