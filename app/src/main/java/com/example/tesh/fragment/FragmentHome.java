@@ -21,6 +21,11 @@ import com.example.tesh.item.CategoryItem;
 import com.example.tesh.R;
 import com.example.tesh.adapter.CategoriesAdapter;
 import com.example.tesh.item.HotProductItem;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,21 +50,31 @@ public class FragmentHome extends Fragment {
             flipperimage(image);
         }
 
-        //Categories
-        List<CategoryItem> categoryItems = new ArrayList<>();
-        categoryItems.add(new CategoryItem(R.drawable.categories1, "Figure"));
-        categoryItems.add(new CategoryItem(R.drawable.categories2,"GD Model Kit"));
-        categoryItems.add(new CategoryItem(R.drawable.categories3, "Sticker"));
-        categoryItems.add(new CategoryItem(R.drawable.categories4,"Keychain"));
-        // Add more items as needed
-
-        // Set up the RecyclerView
         RecyclerView rcvCategories = view.findViewById(R.id.rcv_categories);
         rcvCategories.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        // Create and set the adapter
+        List<CategoryItem> categoryItems = new ArrayList<>();
         CategoriesAdapter adapter = new CategoriesAdapter(categoryItems);
         rcvCategories.setAdapter(adapter);
+
+        DatabaseReference categoryRef = FirebaseDatabase.getInstance().getReference().child("categoryitem");
+        categoryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                categoryItems.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String name = snapshot.child("name").getValue(String.class);
+                    String img = snapshot.child("img").getValue(String.class);
+                    categoryItems.add(new CategoryItem(img, name));
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Xử lý lỗi nếu có
+            }
+        });
 
         //Hot Product
         RecyclerView rcvHotProduct = view.findViewById(R.id.rcv_hotproduct);

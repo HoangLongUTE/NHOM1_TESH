@@ -1,6 +1,5 @@
 package com.example.tesh;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,7 +19,6 @@ public class activity_favorite_detail extends AppCompatActivity {
     private ImageView imgFavoriteRemove;
     private FavoriteAdapter favoriteAdapter;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,14 +56,6 @@ public class activity_favorite_detail extends AppCompatActivity {
             }
         });
 
-        imgFavoriteRemove = findViewById(R.id.img_favorite_remove_detail);
-        imgFavoriteRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeItemFromFavorites(itemId, position);
-                onBackPressed();
-            }
-        });
     }
 
     private void removeItemFromFavorites(String itemId, int position) {

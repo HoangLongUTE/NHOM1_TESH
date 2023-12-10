@@ -58,7 +58,7 @@ public class comic_product extends AppCompatActivity {
         comicModels.add(new comic_model(R.drawable.bayvienngocrong3, "Dragon Ball 3", "$ 22", "Sold 270"));
         comicModels.add(new comic_model(R.drawable.naruto, "Naruto", "$ 16", "Sold 80"));
         comicModels.add(new comic_model(R.drawable.naruto2, "Naruto 2", "$ 16", "Sold 300"));
-        comicModels.add(new comic_model(R.drawable.bayvienngocrong, "Dragon Ball Super 3", "& 21", "Sold 270"));
+        comicModels.add(new comic_model(R.drawable.bayvienngocrong, "Dragon Ball Super 3", "$ 21", "Sold 270"));
         // Add more items as needed
 
         return comicModels;
