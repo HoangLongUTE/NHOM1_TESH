@@ -1,8 +1,10 @@
 package com.example.tesh.manager;
 
+import com.example.tesh.fragment.FragmentFavorite;
 import com.example.tesh.model.favorite_model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class FavoriteManager {
@@ -14,7 +16,14 @@ public class FavoriteManager {
     }
 
     public static void addToFavorites(favorite_model favorite) {
-        favoriteList.add(favorite);
+        if (!checkIfItemExists(favorite)) {
+            favoriteList.add(favorite);
+
+            // Thông báo cho lớp lắng nghe nếu có
+            if (removedListener != null) {
+                removedListener.onFavoriteItemRemoved(favorite.getTitle_fv());
+            }
+        }
     }
 
     public static boolean checkIfItemExists(favorite_model favorite) {
@@ -28,24 +37,32 @@ public class FavoriteManager {
         return false;
     }
 
-    public static void setOnFavoriteItemRemovedListener(OnFavoriteItemRemovedListener listener) {
-        removedListener = listener;
-    }
-
     public static void removeFromFavorites(String itemId) {
         // Tìm đối tượng có itemId tương ứng và xóa khỏi danh sách yêu thích
+        favorite_model itemToRemove = null;
         for (favorite_model item : favoriteList) {
             if (item.getTitle_fv().equals(itemId)) {
-                favoriteList.remove(item);
+                itemToRemove = item;
+                break;
+            }
+        }
 
-                // Thông báo cho lớp lắng nghe nếu có
-                if (removedListener != null) {
-                    removedListener.onFavoriteItemRemoved(itemId);
-                }
+        if (itemToRemove != null) {
+            favoriteList.remove(itemToRemove);
 
-                break; // Đảm bảo chỉ xóa một mục nếu có nhiều mục có cùng itemId
+            // Thông báo cho lớp lắng nghe nếu có
+            if (removedListener != null) {
+                removedListener.onFavoriteItemRemoved(itemId);
             }
         }
     }
-}
+    public static void updateFavoritesList(List<favorite_model> updatedList) {
+        favoriteList.clear();
+        favoriteList.addAll(updatedList);
 
+        // Thông báo cho lớp lắng nghe nếu có
+        if (removedListener != null) {
+            removedListener.onFavoriteItemRemoved(null); // hoặc có thể truyền một giá trị khác để phân biệt
+        }
+    }
+}
