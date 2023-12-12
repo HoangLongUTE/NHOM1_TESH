@@ -73,11 +73,23 @@ public class activity_edit_profile extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 User user = snapshot.getValue(User.class);
-                editGender.setText(user.getGender().toString());
-                editGmail.setText(user.getEmail().toString());
-                editAddress.setText(user.getAddress().toString());
-                editPhone.setText(user.getPhone().toString());
+                if(user.getGender() !=null  && user.getAddress() !=null  && user.getEmail() !=null & user.getPhone() != null)
+                {
+                    editGender.setText(user.getGender().toString());
+                    editGmail.setText(user.getEmail().toString());
+                    editAddress.setText(user.getAddress().toString());
+                    editPhone.setText(user.getPhone().toString());
+                }
+                else
+                {
+                    editGender.setText("");
+                    editGmail.setText("");
+                    editAddress.setText("");
+                    editPhone.setText("");
+                }
+
             }
 
             @Override
@@ -149,11 +161,11 @@ public class activity_edit_profile extends AppCompatActivity {
 
                 // Tạo Intent để chứa dữ liệu cập nhật
                 Intent resultIntent = new Intent();
-              resultIntent.putExtra("updatedUsername", updatedUsername);
-                resultIntent.putExtra("updatedGender", updatedGender);
-                resultIntent.putExtra("updatedGmail", updatedGmail);
-                resultIntent.putExtra("updatedAddress", updatedAddress);
-                resultIntent.putExtra("updatedPhone", updatedPhone);
+//              resultIntent.putExtra("updatedUsername", updatedUsername);
+//                resultIntent.putExtra("updatedGender", updatedGender);
+//                resultIntent.putExtra("updatedGmail", updatedGmail);
+//                resultIntent.putExtra("updatedAddress", updatedAddress);
+//                resultIntent.putExtra("updatedPhone", updatedPhone);
 
                 // Set kết quả là OK và chứa dữ liệu cập nhật
                 setResult(RESULT_OK, resultIntent);
