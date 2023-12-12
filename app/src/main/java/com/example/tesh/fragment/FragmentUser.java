@@ -83,10 +83,20 @@ public class FragmentUser extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-                tGender.setText(user.getGender().toString());
-                tGmail.setText(user.getEmail().toString());
-                tAddress.setText(user.getAddress().toString());
-                tPhone.setText(user.getPhone().toString());
+                if(user.getGender() !=null  && user.getAddress() !=null  && user.getEmail() !=null & user.getPhone() != null)
+                {
+                    tGender.setText(user.getGender().toString());
+                    tGmail.setText(user.getEmail().toString());
+                    tAddress.setText(user.getAddress().toString());
+                    tPhone.setText(user.getPhone().toString());
+                }
+                else
+                {
+                    tGender.setText("");
+                    tGmail.setText("");
+                    tAddress.setText("");
+                    tPhone.setText("");
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -175,20 +185,20 @@ public class FragmentUser extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == EDIT_PROFILE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-
-            String updatedUsername = data.getStringExtra("updatedUsername");
-            String updatedGender = data.getStringExtra("updatedGender");
-            String updatedGmail = data.getStringExtra("updatedGmail");
-            String updatedAddress = data.getStringExtra("updatedAddress");
-            String updatedPhone = data.getStringExtra("updatedPhone");
-
-            tUsername.setText(updatedUsername);
-            tGender.setText(updatedGender);
-            tGmail.setText(updatedGmail);
-            tAddress.setText(updatedAddress);
-            tPhone.setText(updatedPhone);
-        }
+//        if (requestCode == EDIT_PROFILE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+//
+//            String updatedUsername = data.getStringExtra("updatedUsername");
+//            String updatedGender = data.getStringExtra("updatedGender");
+//            String updatedGmail = data.getStringExtra("updatedGmail");
+//            String updatedAddress = data.getStringExtra("updatedAddress");
+//            String updatedPhone = data.getStringExtra("updatedPhone");
+//
+//            tUsername.setText(updatedUsername);
+//            tGender.setText(updatedGender);
+//            tGmail.setText(updatedGmail);
+//            tAddress.setText(updatedAddress);
+//            tPhone.setText(updatedPhone);
+//        }
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             String updatedImageUriString = data.getStringExtra(IMAGE_URI_KEY);
