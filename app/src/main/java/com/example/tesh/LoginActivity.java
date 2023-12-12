@@ -3,7 +3,9 @@ package com.example.tesh;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,7 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         text_forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String username = et_UserName.getText().toString().trim();
                 Intent intent = new Intent(LoginActivity.this, ResetPassword.class);
+                intent.putExtra("username_key",username);
                 startActivity(intent);
             }
         });
@@ -72,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (password.equals(actualPassword)) {
                                     // Mật khẩu chính xác, chuyển đến MainActivity
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    sendData(LoginActivity.this,username);
                                     startActivity(intent);
                                 } else {
                                     Toast.makeText(LoginActivity.this, "Mật khẩu không chính xác", Toast.LENGTH_SHORT).show();
@@ -101,6 +106,21 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+    }
+    //su dung  SharedPreferences de gui username qua edit profile
+    public static void sendData(Context context, String dataToSend) {
+
+        // Khởi tạo SharedPreferences
+        SharedPreferences preferences = context.getSharedPreferences("sendUsername", Context.MODE_PRIVATE);
+
+        // Lấy một Editor để thực hiện các thay đổi
+        SharedPreferences.Editor editor = preferences.edit();
+
+        // Đặt giá trị cho key "TEN_BIEN"
+        editor.putString("TEN_BIEN", dataToSend);
+
+        // Lưu các thay đổi
+        editor.apply();
     }
 
 }

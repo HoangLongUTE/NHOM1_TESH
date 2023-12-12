@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import com.example.tesh.Cart.Cart;
 import com.example.tesh.Cart.DetailAdapter;
 import com.example.tesh.Cart.ProductAdapter;
 import com.example.tesh.Cart.item;
+import com.example.tesh.User.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +30,7 @@ import java.util.List;
 
 public class detail_cart extends AppCompatActivity {
     ImageView btn_back_cart;
-    TextView txttotal;
+    TextView txttotal, sdtkh,diachikh;
     Button btn_confirm;
     ArrayList<Integer> listID;
     private RecyclerView rcvCart;
@@ -40,6 +43,28 @@ public class detail_cart extends AppCompatActivity {
         setContentView(R.layout.activity_detail_cart);
         btn_confirm = (Button) findViewById(R.id.btnconfirm);
         btn_back_cart = (ImageView) findViewById(R.id.imgbackbi);
+        sdtkh = (TextView) findViewById(R.id.name_phone) ;
+        diachikh = (TextView) findViewById(R.id.diachikh) ;
+
+        //(sd  SharedPreferences:) de lay username
+        String username= receiveData(detail_cart.this);
+        //get Data ve khi dang nhap dung tai khoan
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users").child(username);
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                diachikh.setText(user.getAddress().toString());
+                sdtkh.setText(user.getPhone().toString());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //end
+
 
         rcvCart = (RecyclerView) findViewById(R.id.listpay) ;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -111,5 +136,12 @@ public class detail_cart extends AppCompatActivity {
 
         // Hiển thị tổng giá trị
         txtTotal.setText(String.valueOf(total));
+    }
+        public static String receiveData(Context context) {
+        // Khởi tạo SharedPreferences
+        SharedPreferences preferences = context.getSharedPreferences("sendUsername", Context.MODE_PRIVATE);
+
+        // Đọc giá trị từ key "TEN_BIEN", nếu không tìm thấy, sử dụng giá trị mặc định là ""
+        return preferences.getString("TEN_BIEN", "");
     }
 }
