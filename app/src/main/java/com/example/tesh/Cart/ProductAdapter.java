@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,16 +19,19 @@ import com.google.firebase.database.FirebaseDatabase;
 //import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder>  {
-   private List<item> mList;
+    private List<item> mList;
     private TextView totalPriceTextView;
+
 
     public ProductAdapter(List<item> mList, TextView totalPriceTextView) {
         this.mList = mList;
         this.totalPriceTextView = totalPriceTextView;
+
     }
 
     @NonNull
@@ -39,6 +43,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+
         item Item = mList.get(position);
         if(Item==null){
             return;
@@ -72,6 +77,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             Item.setChecked(isChecked);
             updateTotalPrice();
         });
+
     }
     public void checkAll() {
         for (item item : mList) {
@@ -87,9 +93,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 totalPrice += item.getPrice() * item.getQuantity();
             }
         }
-       //Thực hiện cập nhật TextView hiển thị tổng giá ở đây
-       totalPriceTextView.setText(String.valueOf(totalPrice));
+        //Thực hiện cập nhật TextView hiển thị tổng giá ở đây
+        totalPriceTextView.setText(String.valueOf(totalPrice));
     }
+
 
     public ArrayList<Integer> getSelectedItems(){
         ArrayList<Integer> selectedItems = new ArrayList<>();
@@ -167,4 +174,3 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
     }
 }
-

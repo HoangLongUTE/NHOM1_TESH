@@ -42,8 +42,8 @@ import java.util.List;
 public class Cart extends AppCompatActivity {
 
     private RecyclerView rcvCart;
-    private ProductAdapter productAdapter;
-    private List<item> list;
+    static ProductAdapter productAdapter;
+    static List<item> list;
     ImageView back;
     Button btnPay;
     static CheckBox cbxtotal;
@@ -103,6 +103,8 @@ public class Cart extends AppCompatActivity {
 //            productAdapter.notifyDataSetChanged();
             productAdapter.updateTotalPrice();
         });
+
+
     }
 
     private void getListCartFromRealtimeDatabase(){

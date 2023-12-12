@@ -28,7 +28,9 @@ public class ResetPassword extends AppCompatActivity {
         btn_back = findViewById(R.id.btn_fg_pw_backtologin);
         txt_pw = findViewById(R.id.text_fg_pw);
         txt_pw_confirm = findViewById(R.id.text_fg_pw_confirm);
-
+        //intent ussername da dang nhap qua
+        Intent receiveIntent = getIntent();
+        String txtusername = receiveIntent.getStringExtra("username_key");
 
 
         btn_reset.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +45,11 @@ public class ResetPassword extends AppCompatActivity {
                 else if(!pw_confirm.equals(pw)) {
                     Toast.makeText(ResetPassword.this, "Mật khẩu xác nhận không khớp", Toast.LENGTH_SHORT).show();
                 } else {
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference("Users")
+                            .child(txtusername)
+                            .child("password");
+                    myRef.setValue(pw);
                     Intent intent = new Intent(ResetPassword.this, NotifyResetPasswordSuccess.class);
                     startActivity(intent);
                 }

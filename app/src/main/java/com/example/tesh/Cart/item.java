@@ -10,7 +10,7 @@ public class item {
     public int quantity;
     public int id;
     public boolean isChecked;
-   // private int numProduct = 1;
+    // private int numProduct = 1;
 
     public item(){
 
