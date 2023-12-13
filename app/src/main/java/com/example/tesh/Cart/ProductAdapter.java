@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 //import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,11 +25,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private List<item> mList;
     private TextView totalPriceTextView;
 
+    public void setMyUserName(String myUserName) {
+        this.myUserName = myUserName;
+        notifyDataSetChanged(); // Cập nhật Adapter khi có sự thay đổi
+
+    }
+
+    private String myUserName;
 
     public ProductAdapter(List<item> mList, TextView totalPriceTextView) {
         this.mList = mList;
         this.totalPriceTextView = totalPriceTextView;
-
     }
 
     @NonNull
@@ -43,7 +47,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-
         item Item = mList.get(position);
         if(Item==null){
             return;
@@ -59,6 +62,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             public void onClick(View v) {
                 int newQuantity = Item.getQuantity() + 1;
                 updateQuantity(Item, newQuantity,holder.quantity);
+                updateItemCheckedState(Item, holder.CBitem.isChecked());
             }
         });
 
@@ -69,22 +73,23 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 if (Item.getQuantity() > 0) {
                     int newQuantity = Item.getQuantity() - 1;
                     updateQuantity(Item, newQuantity,holder.quantity);
+                    updateItemCheckedState(Item, holder.CBitem.isChecked());
                 }
             }
         });
         // Xử lý sự kiện tick vào CheckBox
         holder.CBitem.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            Item.setChecked(isChecked);
-            updateTotalPrice();
-        });
+            updateItemCheckedState(Item, isChecked);
 
+        });
     }
-    public void checkAll() {
-        for (item item : mList) {
-            item.setChecked(true);
-        }
-        updateTotalPrice();
+
+    private void updateItemCheckedState(item item, boolean isChecked) {
+        item.setChecked(isChecked);
+        notifyDataSetChanged(); // Thông báo cho adapter biết rằng tập dữ liệu đã thay đổi
+        updateTotalPrice(); // Cập nhật tổng giá sau khi thay đổi trạng thái
     }
+
 
     public void updateTotalPrice() {
         double totalPrice = 0;
@@ -96,7 +101,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         //Thực hiện cập nhật TextView hiển thị tổng giá ở đây
         totalPriceTextView.setText(String.valueOf(totalPrice));
     }
-
 
     public ArrayList<Integer> getSelectedItems(){
         ArrayList<Integer> selectedItems = new ArrayList<>();
@@ -114,7 +118,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             item item = iterator.next();
             if (item.isChecked()) {
                 // Xóa item từ Realtime Database
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Cart")
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Cart").child(myUserName)
                         .child(String.valueOf(item.getId()));
                 databaseReference.removeValue();
 
@@ -132,7 +136,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 //        notifyDataSetChanged();
 
         // Cập nhật số lượng trong Realtime Database
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Cart")
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Cart").child(myUserName)
                 .child(String.valueOf(item.getId()))
                 .child("quantity");
 
@@ -141,6 +145,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     if (task.isSuccessful()) {
                         // Cập nhật thành công
                         quantityTextView.setText(String.valueOf(newQuantity));
+//                        updateTotalPrice();
                     } else {
                         // Xử lý lỗi khi cập nhật
                     }
