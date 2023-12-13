@@ -184,6 +184,7 @@ public class activity_edit_profile extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String password = snapshot.getValue(String.class);
+
                         //push
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference myRef = database.getReference("Users").child(username);

@@ -1,8 +1,10 @@
 package com.example.tesh.fragment;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,11 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.example.tesh.Cart.Cart;
+import com.example.tesh.Cart.item;
 import com.example.tesh.MessageActivity;
 import com.example.tesh.adapter.HotProductAdapter;
+import com.example.tesh.detail_cart;
 import com.example.tesh.item.CategoryItem;
 import com.example.tesh.R;
 import com.example.tesh.adapter.CategoriesAdapter;
@@ -29,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class FragmentHome extends Fragment {
 
@@ -82,15 +88,39 @@ public class FragmentHome extends Fragment {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         rcvHotProduct.setLayoutManager(layoutManager);
 
-        List<HotProductItem> hotProductItems = new ArrayList<>();
-        hotProductItems.add(new HotProductItem(R.drawable.categories1, "Figure Hinata Hyuga - Naruto Shippuden", " $ 15",123));
-        hotProductItems.add(new HotProductItem(R.drawable.categories2, "Gundam MG Virtue", " $739",223));
-        hotProductItems.add(new HotProductItem(R.drawable.categories3, "Stiker Genshin Impact Nahida", " $ 4",43));
-        hotProductItems.add(new HotProductItem(R.drawable.categories4, "Heroes Acedamy Keychain ", " $ 8",23));
-        hotProductItems.add(new HotProductItem(R.drawable.categories5, "Detective Conan ", " $ 3",523));
 
-        HotProductAdapter hotProductAdapter = new HotProductAdapter(hotProductItems);
-        rcvHotProduct.setAdapter(hotProductAdapter);
+        List<HotProductItem> hotProductItems = new ArrayList<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("hotproductitem");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Lặp qua tất cả các mục trong trường "hotproductitem"
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        // Lấy giá trị của mỗi mục trong trường "hotproductitem"
+                        // In thông tin mục
+                        String name = snapshot.child("name").getValue(String.class);
+                        String image = snapshot.child("imageURL").getValue(String.class);
+                        int quantity = snapshot.child("quantity").getValue(int.class);
+                        int price = snapshot.child("price").getValue(int.class);
+                        int id = snapshot.child("id").getValue(int.class);
+                        hotProductItems.add(new HotProductItem(image, name, " $ "+String.valueOf(price),quantity,id));
+                        System.out.println("Do dai:"+hotProductItems.size());
+                    }
+                    HotProductAdapter hotProductAdapter = new HotProductAdapter(hotProductItems);
+                    rcvHotProduct.setAdapter(hotProductAdapter);
+
+                } else {
+                    System.out.println("Không có dữ liệu trong trường 'hotproductitem'.");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Lỗi đọc dữ liệu: " + error.getMessage());
+            }
+        });
 
         btn_cart= view.findViewById(R.id.btn_cart);
         btn_cart.setOnClickListener(new View.OnClickListener() {
@@ -124,4 +154,5 @@ public class FragmentHome extends Fragment {
         imageslider.setOutAnimation(requireContext(), android.R.anim.slide_out_right);
 
     }
+
 }
