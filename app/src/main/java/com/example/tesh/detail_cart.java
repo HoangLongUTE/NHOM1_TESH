@@ -36,6 +36,7 @@ public class detail_cart extends AppCompatActivity {
     private RecyclerView rcvCart;
     private DetailAdapter detailAdapter;
     private List<item> list;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class detail_cart extends AppCompatActivity {
         diachikh = (TextView) findViewById(R.id.diachikh) ;
 
         //(sd  SharedPreferences:) de lay username
-        String username= receiveData(detail_cart.this);
+        username= receiveData(detail_cart.this);
         //get Data ve khi dang nhap dung tai khoan
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users").child(username);
@@ -97,7 +98,7 @@ public class detail_cart extends AppCompatActivity {
     private void getListCartFromRealtimeDatabase(){
         for(int i : listID){
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("Cart")
+            DatabaseReference myRef = database.getReference("Cart").child(username)
                     .child(String.valueOf(i));
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
