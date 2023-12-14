@@ -71,7 +71,8 @@ public class FragmentHome extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String name = snapshot.child("name").getValue(String.class);
                     String img = snapshot.child("img").getValue(String.class);
-                    categoryItems.add(new CategoryItem(img, name));
+                    int id = snapshot.child("id").getValue(int.class);
+                    categoryItems.add(new CategoryItem(img, name,id));
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -106,7 +107,6 @@ public class FragmentHome extends Fragment {
                         int price = snapshot.child("price").getValue(int.class);
                         int id = snapshot.child("id").getValue(int.class);
                         hotProductItems.add(new HotProductItem(image, name, " $ "+String.valueOf(price),quantity,id));
-                        System.out.println("Do dai:"+hotProductItems.size());
                     }
                     HotProductAdapter hotProductAdapter = new HotProductAdapter(hotProductItems);
                     rcvHotProduct.setAdapter(hotProductAdapter);

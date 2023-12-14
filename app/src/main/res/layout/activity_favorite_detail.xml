@@ -247,7 +247,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Content"
+                        android:text="Description"
                         android:fontFamily="sans-serif-medium"
                         android:textColor="@color/black"
                         />
@@ -292,6 +292,15 @@
             android:padding="10dp"
             android:src="@drawable/messenger"
 
+            />
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/detail_btn_favorite"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bg_yellow_rounded"
+            android:padding="10dp"
+            android:src="@drawable/heart_comic_detail"
             />
 
         <androidx.appcompat.widget.AppCompatImageButton

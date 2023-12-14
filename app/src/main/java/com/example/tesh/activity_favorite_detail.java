@@ -1,20 +1,29 @@
 package com.example.tesh;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.example.tesh.Cart.Cart;
+import com.example.tesh.Cart.Product;
+import com.example.tesh.Cart.item;
+import com.example.tesh.User.User;
 import com.example.tesh.adapter.FavoriteAdapter;
+import com.example.tesh.adapter.HotProductAdapter;
 import com.example.tesh.fragment.FragmentFavorite;
+import com.example.tesh.item.HotProductItem;
 import com.example.tesh.manager.FavoriteManager;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +39,7 @@ public class activity_favorite_detail extends AppCompatActivity {
     AppCompatImageButton btn_chat,btn_add_favorite,btn_add_to_cart;
     ImageView btn_back,btn_go_to_cart,imageView;
     TextView txt_quantity,txt_name,txt_price,txt_content,txt_author,txt_category,txt_number_page,txt_quantity_data;
-    String name,content,imageURL,author;
+    String name,content,imageURL,author,username;
 
     Integer price;
     int quantity = 1;
@@ -64,9 +73,11 @@ public class activity_favorite_detail extends AppCompatActivity {
         btn_go_to_cart = findViewById(R.id.btn_go_to_cart);
         btn_chat = findViewById(R.id.btn_go_to_chat);
         btn_add_to_cart = findViewById(R.id.btn_add_to_cart);
+        btn_add_favorite = findViewById(R.id.detail_btn_favorite);
         btn_buy = findViewById(R.id.btn_buy_now);
         imageView = findViewById(R.id.img_detail_favorite);
 //        btn_add_favorite = findViewById(R.id.btn_add_to_favourite);
+        username= receiveData(activity_favorite_detail.this);
 
         //Set event click button
         btn_plus.setOnClickListener(new View.OnClickListener() {
@@ -92,8 +103,7 @@ public class activity_favorite_detail extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity_favorite_detail.this, MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
         btn_go_to_cart.setOnClickListener(new View.OnClickListener() {
@@ -107,13 +117,15 @@ public class activity_favorite_detail extends AppCompatActivity {
         btn_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity_favorite_detail.this, "Đi tới chat", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activity_favorite_detail.this, MessageActivity.class);
+                startActivity( intent);
             }
         });
         btn_add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity_favorite_detail.this, "Đã thêm sản phẩm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                Product product= new Product(name,price,imageURL,quantity,idproduct);
+                addToCart(username,product);
             }
         });
         btn_buy.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +166,32 @@ public class activity_favorite_detail extends AppCompatActivity {
                 Toast.makeText(activity_favorite_detail.this, "Lỗi:"+error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+        DatabaseReference CategoryRef = database.getReference("categoryitem");
+        CategoryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Lặp qua tất cả các mục trong trường "hotproductitem"
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        // Lấy giá trị của mỗi mục trong trường "hotproductitem"
+                        // In thông tin mục
+
+                        int id = snapshot.child("id").getValue(int.class);
+                        if(id==categoryID) {
+                            String name = snapshot.child("name").getValue(String.class);
+                            txt_category.setText(name.toString());
+                        }
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
@@ -162,5 +200,70 @@ public class activity_favorite_detail extends AppCompatActivity {
         if (favoriteAdapter != null) {
             favoriteAdapter.removeItem(position);
         }
+    }
+
+    private void addToCart(String user, Product product) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Cart").child(user);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                        Boolean check=false;
+                        int idProduct = product.getId();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            int idFromDB = snapshot.child("id").getValue(int.class);
+                            System.out.println(idFromDB+" va " + idProduct+" =>>>"+ String.valueOf(idFromDB==idProduct));
+                            if(idFromDB==idProduct) {
+                                int quantityFromDB = snapshot.child("quantity").getValue(int.class);
+                                int quantityAddToCart = product.getQuantity();
+                                int newQuantity = quantityFromDB + quantityAddToCart;
+                                snapshot.getRef().child("quantity").setValue(newQuantity, new DatabaseReference.CompletionListener() {
+                                    @Override
+                                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                        Toast.makeText(activity_favorite_detail.this, "Đã thêm sản phẩm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                                check = true;
+                                break;
+                            }
+                        }
+                        System.out.println("End for");
+                        if(!check) {
+                            dataSnapshot.getRef().child(String.valueOf(idproduct)).setValue(product, new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                    Toast.makeText(activity_favorite_detail.this, "Đã thêm sản phẩm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
+                }
+                else {
+                        myRef.child(String.valueOf(idproduct)).setValue(product, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                Toast.makeText(activity_favorite_detail.this, "Đã thêm sản phẩm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                Intent intent = new Intent(activity_favorite_detail.this, Cart.class);
+                startActivity( intent);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public static String receiveData(Context context) {
+        // Khởi tạo SharedPreferences
+        SharedPreferences preferences = context.getSharedPreferences("sendUsername", Context.MODE_PRIVATE);
+
+        // Đọc giá trị từ key "TEN_BIEN", nếu không tìm thấy, sử dụng giá trị mặc định là ""
+        return preferences.getString("TEN_BIEN", "");
     }
 }

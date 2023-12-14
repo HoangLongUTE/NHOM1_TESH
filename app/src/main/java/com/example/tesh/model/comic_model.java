@@ -1,23 +1,25 @@
 package com.example.tesh.model;
 
 public class comic_model {
-    private int resourceId;
+    private String resourceId;
     private String title;
     private String price;
     private String sell;
+    private  int id;
 
-    public comic_model(int resourceId, String title, String price, String sell) {
+    public comic_model(String resourceId, String title, String price, String sell,int id) {
         this.resourceId= resourceId;
         this.title = title;
         this.price= price;
         this.sell = sell;
+        this.id=id;
     }
 
-    public int getResourceId() {
+    public String getResourceId() {
         return resourceId;
     }
 
-    public void setResourceId(int resourceId) {this.resourceId = resourceId;}
+    public void setResourceId(String resourceId) {this.resourceId = resourceId;}
 
     public String getTitle() {return title;}
 
@@ -39,6 +41,14 @@ public class comic_model {
 
     public void setSell(String sell) {
         this.sell = sell;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 

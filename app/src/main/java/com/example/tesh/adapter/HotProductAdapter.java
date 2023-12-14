@@ -45,7 +45,6 @@ public class HotProductAdapter extends RecyclerView.Adapter<HotProductAdapter.Vi
                 Context context = view.getContext();
                 Intent intent = new Intent(context, activity_favorite_detail.class );
                 intent.putExtra("idProduct",hotProductItem.getId());
-//                intent.putExtra("Detective Conan", hotProductItem.getImageResource());
                 context.startActivity(intent);
             }
         });
