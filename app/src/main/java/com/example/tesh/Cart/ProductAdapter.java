@@ -75,6 +75,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     updateQuantity(Item, newQuantity,holder.quantity);
                     updateItemCheckedState(Item, holder.CBitem.isChecked());
                 }
+                else{
+                    // Quantity is 0, remove the item from Firebase
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Cart").child(myUserName)
+                            .child(String.valueOf(Item.getId()));
+                    databaseReference.removeValue();
+                    // Remove the item from the list
+                    mList.remove(Item);
+                    // Notify the adapter about the removal
+                    notifyItemRemoved(holder.getAdapterPosition());
+                }
             }
         });
         // Xử lý sự kiện tick vào CheckBox
