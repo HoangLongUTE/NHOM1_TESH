@@ -13,9 +13,11 @@ import android.widget.Toast;
 
 import com.example.tesh.User.User;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,6 +26,9 @@ public class SignupActivity extends AppCompatActivity {
 
     Button btnSignup;
     TextInputEditText et_UserName, et_Password, et_ComfirmPassword;
+    private boolean isUsernameExists = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +52,76 @@ public class SignupActivity extends AppCompatActivity {
                 } else if (!password.equals(comfirmpassword)) {
                     Toast.makeText(SignupActivity.this, "Confirm password không khớp với password", Toast.LENGTH_SHORT).show();
                 }  else {
+                    checkAccount(username, password);
+                }
 
-                    User user = new User(username,password);
-                    onclickAddUser(user);
+            }
+        });
+    }
+//    private void checkUsernameExists(String username, String password) {
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference usersRef = database.getReference("Users");
+//
+//        usersRef.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if (snapshot.exists()) {
+//                    // Username already exists
+//                    Toast.makeText(SignupActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    User user = new User(username, password);
+//                    onclickAddUser(user);
+//                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+//                    startActivity(intent);
+//                    // Username is available, proceed with registration
+//                    // You can call your registration logic or show a success message here
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                // Handle any errors here
+//            }
+//        });
+//    }
+
+    private void checkAccount(String username, String password){
+
+        FirebaseDatabase database1=FirebaseDatabase.getInstance();
+        DatabaseReference myref= database1.getReference("Users");
+        myref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()) {
+//                    String _username = snapshot.getValue(String.class);
+                    for(DataSnapshot userSnapshot : snapshot.getChildren())
+                    {
+                        User user = userSnapshot.getValue(User.class);
+                        if(user!=null && user.getUsername().equals(username)){
+                            isUsernameExists = true;
+                            Toast.makeText(SignupActivity.this, "Account already exists", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }
+                    if(!isUsernameExists)
+                    {
+                        User newUser = new User(username, password);
+                        onclickAddUser(newUser);
+                        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+
+                } else {
+                    User newUser = new User(username, password);
+                    onclickAddUser(newUser);
                     Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
