@@ -1,23 +1,25 @@
 package com.example.tesh.item;
 
 public class HotProductItem {
-    private int imageResource;
+
+    private int id;
     private String name;
-    private String price;
+    private String price,imageResource;
     private int numSold;
 
-    public HotProductItem(int imageResource, String name, String price, int numSold) {
+    public HotProductItem(String imageResource, String name, String price, int numSold,int id) {
         this.imageResource = imageResource;
         this.name = name;
         this.price = price;
         this.numSold = numSold;
+        this.id = id;
     }
 
-    public int getImageResource() {
+    public String getImageResource() {
         return imageResource;
     }
 
-    public void setImageResource(int imageResource) {
+    public void setImageResource(String imageResource) {
         this.imageResource = imageResource;
     }
 
@@ -43,5 +45,14 @@ public class HotProductItem {
 
     public void setNumSold(int numSold) {
         this.numSold = numSold;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

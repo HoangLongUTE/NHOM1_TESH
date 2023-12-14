@@ -12,8 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tesh.R;
+import com.example.tesh.activity_favorite_detail;
 import com.example.tesh.fragment_detail_product;
 import com.example.tesh.item.HotProductItem;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -33,16 +35,16 @@ public class HotProductAdapter extends RecyclerView.Adapter<HotProductAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull HotProductAdapter.ViewHolder holder, int position) {
         HotProductItem hotProductItem = hotProductItems.get(position);
-        holder.imgHotProduct.setImageResource(hotProductItem.getImageResource());
+        Picasso.get().load(hotProductItem.getImageResource()).into(holder.imgHotProduct);
         holder.tvName.setText(hotProductItem.getName());
         holder.tvPrice.setText(hotProductItem.getPrice());
-        holder.tvNumSold.setText("Sold " + hotProductItem.getNumSold());
+        holder.tvNumSold.setText("Quantity " + hotProductItem.getNumSold());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view ) {
                 Context context = view.getContext();
-                Intent intent = new Intent(context, fragment_detail_product.class );
-                intent.putExtra("Detective Conan", hotProductItem.getImageResource());
+                Intent intent = new Intent(context, activity_favorite_detail.class );
+                intent.putExtra("idProduct",hotProductItem.getId());
                 context.startActivity(intent);
             }
         });

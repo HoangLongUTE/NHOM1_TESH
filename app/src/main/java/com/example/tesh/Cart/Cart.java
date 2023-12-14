@@ -78,7 +78,6 @@ public class Cart extends AppCompatActivity {
 
         String myUserName = username;
         productAdapter.setMyUserName(myUserName);
-        Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
         rcvCart.setAdapter(productAdapter);
         getListCartFromRealtimeDatabase();
 

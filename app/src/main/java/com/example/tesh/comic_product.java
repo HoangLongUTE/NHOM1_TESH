@@ -1,4 +1,5 @@
 package com.example.tesh;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -6,12 +7,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tesh.adapter.ComicAdapter;
+import com.example.tesh.adapter.HotProductAdapter;
+import com.example.tesh.item.HotProductItem;
 import com.example.tesh.model.comic_model;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,46 +31,91 @@ public class comic_product extends AppCompatActivity {
     private ComicAdapter comicAdapter;
 
     ImageView btn_back;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comic_product);
 
+        title = findViewById(R.id.product);
         recyclerView_comic = findViewById(R.id.rev_comic);
-        comicAdapter = new ComicAdapter(this, getlist_comic());
         recyclerView_comic.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns grid layout
-        recyclerView_comic.setAdapter(comicAdapter);
-        btn_back = findViewById(R.id.btn_back);
-
         Intent intent = getIntent();
-        int categoryId = intent.getIntExtra("categoryId", 0);
-        String categoryName = intent.getStringExtra("categoryName");
-        Log.d("comic_product", "categoryId: " + categoryId + ", categoryName: " + categoryName);
+        int categoryId = intent.getIntExtra("categoryId", 1);
+
+
+        List<comic_model> comicModels = new ArrayList<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Product");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    comicModels.clear();
+                    // Lặp qua tất cả các mục trong trường
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        // Lấy giá trị của mỗi mục trong trường
+                        // In thông tin mục
+                        int id = snapshot.child("category").getValue(int.class);
+                        if(id==categoryId) {
+                            String name = snapshot.child("name").getValue(String.class);
+                            String image = snapshot.child("imageURL").getValue(String.class);
+                            int quantity = snapshot.child("quantity").getValue(int.class);
+                            int price = snapshot.child("price").getValue(int.class);
+                            int idProduct = snapshot.child("id").getValue(int.class);
+                            comicModels.add(new comic_model(image, name, "$ "+price, "Quantity "+quantity,idProduct));
+                        }
+                    }
+                    comicAdapter = new ComicAdapter(comic_product.this, comicModels);
+                    recyclerView_comic.setAdapter(comicAdapter);
+                    if(comicModels.size()==0){
+                        Toast.makeText(comic_product.this, "Không có dữ liệu trong category này", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    System.out.println("Không có dữ liệu trong trường 'hotproductitem'.");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Lỗi đọc dữ liệu: " + error.getMessage());
+            }
+        });
+
+
+//      Get name category
+        DatabaseReference myCategoryRef = database.getReference("categoryitem");
+        myCategoryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    // Lấy giá trị của mỗi mục trong trường "hotproductitem"
+                    // In thông tin mục
+
+                    int id = snapshot.child("id").getValue(int.class);
+                    if(id==categoryId) {
+                        String nameCategory = snapshot.child("name").getValue(String.class);
+                        title.setText(nameCategory.toString());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        btn_back = findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(comic_product.this, MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
     }
 
-
-    private List<comic_model> getlist_comic() {
-        List<comic_model> comicModels = new ArrayList<>();
-        // Add your comic_model objects here
-        comicModels.add(new comic_model(R.drawable.conan, "Conan Detective EP80", "$ 20", "Sold 200"));
-        comicModels.add(new comic_model(R.drawable.bayvienngocrong2, "Dragon Ball ", "$ 18", "Sold 120"));
-        comicModels.add(new comic_model(R.drawable.conanmoi, "Conan Detective EP90", "$ 16", "Sold 200"));
-        comicModels.add(new comic_model(R.drawable.conan3, "Conan Detective EP60", "$ 19", "Sold 150"));
-        comicModels.add(new comic_model(R.drawable.bayvienngocrong, "Dragon Ball 2", "$ 18", "Sold 240"));
-        comicModels.add(new comic_model(R.drawable.bayvienngocrong3, "Dragon Ball 3", "$ 22", "Sold 270"));
-        comicModels.add(new comic_model(R.drawable.naruto, "Naruto", "$ 16", "Sold 80"));
-        comicModels.add(new comic_model(R.drawable.naruto2, "Naruto 2", "$ 16", "Sold 300"));
-        comicModels.add(new comic_model(R.drawable.bayvienngocrong, "Dragon Ball Super 3", "$ 21", "Sold 270"));
-        // Add more items as needed
-
-        return comicModels;
-    }
 }
