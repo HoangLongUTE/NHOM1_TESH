@@ -29,6 +29,7 @@ public class fragment_detail_product extends AppCompatActivity {
     String name,content,imageURL;
     Integer price;
     int quantity = 1;
+    int idproduct;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,8 +112,9 @@ public class fragment_detail_product extends AppCompatActivity {
                 Toast.makeText(fragment_detail_product.this, "Đã mua sản phẩm", Toast.LENGTH_SHORT).show();
             }
         });
+        idproduct = getIntent().getIntExtra("idProduct",1);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Cart").child("2");
+        DatabaseReference myRef = database.getReference("Product").child(String.valueOf(idproduct));
         Toast.makeText(fragment_detail_product.this, myRef.toString(), Toast.LENGTH_SHORT).show();
 
        myRef.addValueEventListener(new ValueEventListener() {
