@@ -50,9 +50,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String username = et_UserName.getText().toString().trim();
-                Intent intent = new Intent(LoginActivity.this, ResetPassword.class);
-                intent.putExtra("username_key",username);
-                startActivity(intent);
+                if(username.isEmpty())
+                {
+                    Toast.makeText(LoginActivity.this, "Please fill in your Username", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(LoginActivity.this, ResetPassword.class);
+                    intent.putExtra("username_key",username);
+                    startActivity(intent);
+                }
+
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
