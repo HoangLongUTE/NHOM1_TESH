@@ -74,7 +74,6 @@ public class activity_favorite_detail extends AppCompatActivity {
         btn_chat = findViewById(R.id.btn_go_to_chat);
         btn_add_to_cart = findViewById(R.id.btn_add_to_cart);
         btn_add_favorite = findViewById(R.id.detail_btn_favorite);
-        btn_buy = findViewById(R.id.btn_buy_now);
         imageView = findViewById(R.id.img_detail_favorite);
 //        btn_add_favorite = findViewById(R.id.btn_add_to_favourite);
         username= receiveData(activity_favorite_detail.this);
@@ -126,12 +125,6 @@ public class activity_favorite_detail extends AppCompatActivity {
             public void onClick(View v) {
                 Product product= new Product(name,price,imageURL,quantity,idproduct);
                 addToCart(username,product);
-            }
-        });
-        btn_buy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(activity_favorite_detail.this, "Đã mua sản phẩm", Toast.LENGTH_SHORT).show();
             }
         });
 

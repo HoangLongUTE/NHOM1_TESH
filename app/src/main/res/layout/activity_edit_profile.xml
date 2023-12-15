@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bgr_listview"
                 android:text="KOD"
                 android:textColor="@color/black"
@@ -109,11 +109,14 @@
                 android:fontFamily="@font/poppins_bold" />
 
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp">
+                android:layout_marginRight="30dp"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp"
+                >
 
                 <TextView
                     android:id="@+id/gender"
@@ -126,26 +129,27 @@
 
                 <EditText
                     android:id="@+id/edit_gender"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/gender"
                     android:layout_alignParentRight="true"
                     android:text="Female"
                     android:textColor="@color/black"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/bgr_listview"
                     android:textSize="18dp"
                     android:padding="10dp"
                     android:fontFamily="@font/poppins_bold"/>
-            </RelativeLayout>
+            </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp">
+                android:layout_marginRight="30dp"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp"
+                >
 
                 <TextView
                     android:id="@+id/phone"
@@ -158,18 +162,19 @@
 
                 <EditText
                     android:id="@+id/edit_phone"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/phone"
                     android:layout_alignParentRight="true"
                     android:text="0905123123"
                     android:textColor="@color/black"
-                    android:layout_marginLeft="10dp"
                     android:background="@drawable/bgr_listview"
                     android:textSize="18dp"
                     android:padding="10dp"
-                    android:fontFamily="@font/poppins_bold"/>
-            </RelativeLayout>
+                    android:fontFamily="@font/poppins_bold"
+                    android:layout_marginTop="10dp"
+                    />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -186,14 +191,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bgr_listview"
                 android:text="abc@gmail.com"
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:padding="10dp"
                 android:fontFamily="@font/poppins_bold"
-                android:layout_marginBottom="15dp"
                 />
 
             <TextView
@@ -202,7 +206,9 @@
                 android:text="Address"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:layout_marginLeft="30dp"/>
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                />
 
             <EditText
                 android:id="@+id/edit_address"
@@ -210,7 +216,7 @@
                 android:layout_height="100dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bgr_listview"
                 android:text="57, X Street, ..."
                 android:textColor="@color/black"

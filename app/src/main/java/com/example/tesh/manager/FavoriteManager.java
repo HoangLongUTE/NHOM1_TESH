@@ -21,14 +21,14 @@ public class FavoriteManager {
 
             // Thông báo cho lớp lắng nghe nếu có
             if (removedListener != null) {
-                removedListener.onFavoriteItemRemoved(favorite.getTitle_fv());
+                removedListener.onFavoriteItemRemoved(favorite.getName());
             }
         }
     }
 
     public static boolean checkIfItemExists(favorite_model favorite) {
         for (favorite_model item : favoriteList) {
-            if (item.getTitle_fv().equals(favorite.getTitle_fv())) {
+            if (item.getName().equals(favorite.getName())) {
                 // Mục đã tồn tại trong danh sách yêu thích
                 return true;
             }
@@ -41,7 +41,7 @@ public class FavoriteManager {
         // Tìm đối tượng có itemId tương ứng và xóa khỏi danh sách yêu thích
         favorite_model itemToRemove = null;
         for (favorite_model item : favoriteList) {
-            if (item.getTitle_fv().equals(itemId)) {
+            if (item.getName().equals(itemId)) {
                 itemToRemove = item;
                 break;
             }
