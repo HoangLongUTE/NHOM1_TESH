@@ -48,7 +48,6 @@ public class fragment_detail_product extends AppCompatActivity {
         btn_chat = findViewById(R.id.btn_go_to_chat);
         btn_add_favorite = findViewById(R.id.btn_add_to_favourite);
         btn_add_to_cart = findViewById(R.id.btn_add_to_cart);
-        btn_buy = findViewById(R.id.btn_buy_now);
         imageView = findViewById(R.id.imgViewDetail);
 
         //Set event click button

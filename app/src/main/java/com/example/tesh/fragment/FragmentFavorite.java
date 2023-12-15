@@ -1,19 +1,30 @@
 package com.example.tesh.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tesh.Cart.Cart;
 import com.example.tesh.R;
 import com.example.tesh.adapter.FavoriteAdapter;
+import com.example.tesh.adapter.HotProductAdapter;
+import com.example.tesh.item.HotProductItem;
 import com.example.tesh.manager.FavoriteManager;
 import com.example.tesh.model.favorite_model;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +33,8 @@ public class FragmentFavorite extends Fragment {
 
     private RecyclerView recyclerView;
     private FavoriteAdapter favoriteAdapter;
+    private String username;
 
-    List<favorite_model> existingFavoriteList = new ArrayList<>(getlist_favorite());
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,64 +42,55 @@ public class FragmentFavorite extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
         recyclerView = view.findViewById(R.id.rev_favorite);
 
-        List<favorite_model> existingFavoriteList = getlist_favorite();
-        favoriteAdapter = new FavoriteAdapter(getActivity(), existingFavoriteList);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        recyclerView.setAdapter(favoriteAdapter);
-
-        // Load dữ liệu từ FavoriteManager vào favoriteList
-        List<favorite_model> newFavoriteList = FavoriteManager.getFavoriteList();
-        existingFavoriteList.addAll(newFavoriteList);
-        favoriteAdapter.notifyDataSetChanged();
-
-        // Thêm sự kiện Long Click cho RecyclerView
-        recyclerView.setOnLongClickListener(new View.OnLongClickListener() {
+        username= receiveData(getActivity());
+        List<favorite_model> favoriteModels = new ArrayList<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Favorite").child(username);
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public boolean onLongClick(View v) {
-                // Lấy vị trí của item được nhấn giữ
-                int position = recyclerView.getChildAdapterPosition(v);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Lặp qua tất cả các mục trong trường "hotproductitem"
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        // Lấy giá trị của mỗi mục trong trường "hotproductitem"
+                        // In thông tin mục
+                        String name = snapshot.child("name").getValue(String.class);
+                        String image = snapshot.child("imageURL").getValue(String.class);
+                        int quantity = snapshot.child("quantity").getValue(int.class);
+                        int price = snapshot.child("price").getValue(int.class);
+                        int id = snapshot.child("id").getValue(int.class);
+                        System.out.println("Favorite id:"+id);
+                        // Thêm đối tượng favorite_model
+                        favoriteModels.add(new favorite_model(image, name, price, quantity,id));
+                    }
+                    favoriteAdapter = new FavoriteAdapter(getActivity(), favoriteModels);
+                    favoriteAdapter.setUsername(username);
+                    favoriteAdapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(favoriteAdapter);
 
-                if (position != RecyclerView.NO_POSITION) {
-                    // Xóa item từ danh sách và cập nhật RecyclerView
-                    removeItem(position);
-                    return true; // Đã xử lý sự kiện
+                } else {
+                    System.out.println("Không có dữ liệu trong trường 'hotproductitem'.");
                 }
+            }
 
-                return false; // Chưa xử lý sự kiện
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Lỗi đọc dữ liệu: " + error.getMessage());
             }
         });
 
         return view;
     }
 
-    private List<favorite_model> getlist_favorite() {
-        List<favorite_model> favoriteModels = new ArrayList<>();
-        // Thêm đối tượng favorite_model
-        favoriteModels.add(new favorite_model(R.drawable.figure, "Figure Naruto", "$ 14", "Sold 200"));
-        favoriteModels.add(new favorite_model(R.drawable.mohinh, "Wing GunDam", "$ 10", "Sold 120"));
-        favoriteModels.add(new favorite_model(R.drawable.stickergenshin, "Sticker Genshin", "$ 16", "Sold 200"));
-        favoriteModels.add(new favorite_model(R.drawable.monkeyluffy, "Kaido", "$ 12", "Sold 150"));
-        favoriteModels.add(new favorite_model(R.drawable.onepiece, "OnePiece", "$ 11", "Sold 240"));
-        favoriteModels.add(new favorite_model(R.drawable.figure, "Naruto", "$ 10", "Sold 270"));
-        favoriteModels.add(new favorite_model(R.drawable.stickergenshin, "Sticker", "$ 12", "Sold 80"));
-        favoriteModels.add(new favorite_model(R.drawable.monkeyluffy, "Kaido 2", "$ 10", "Sold 300"));
-        favoriteModels.add(new favorite_model(R.drawable.bayvienngocrong, "Dragon Ball Super 3", "$ 15", "Sold 270"));
-        // Add more items as needed
-
-        return favoriteModels;
-    }
 
     // Xóa item khỏi danh sách và thông báo cập nhật
-    private void removeItem(int position) {
-        // Lấy itemId của item cần xóa
-        String itemId = String.valueOf(favoriteAdapter.getItemId(position));
+    public static String receiveData(Context context) {
+        // Khởi tạo SharedPreferences
+        SharedPreferences preferences = context.getSharedPreferences("sendUsername", Context.MODE_PRIVATE);
 
-        // Xóa item từ FavoriteManager và cập nhật RecyclerView
-        FavoriteManager.removeFromFavorites(itemId);
-        favoriteAdapter.removeItem(position);
-
-        // Hiển thị thông báo
-        Toast.makeText(getActivity(), "Item removed", Toast.LENGTH_SHORT).show();
+        // Đọc giá trị từ key "TEN_BIEN", nếu không tìm thấy, sử dụng giá trị mặc định là ""
+        return preferences.getString("TEN_BIEN", "");
     }
 
 }

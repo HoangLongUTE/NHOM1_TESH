@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tesh.R;
-import com.example.tesh.activity_comic_detail;
 import com.example.tesh.activity_favorite_detail;
 import com.example.tesh.model.comic_model;
 import com.squareup.picasso.Picasso;

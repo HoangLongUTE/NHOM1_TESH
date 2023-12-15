@@ -261,7 +261,8 @@
                         android:textSize="16sp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:padding="8dp"/>
+                        android:padding="8dp"
+                        />
                 </LinearLayout>
 
             </LinearLayout>
@@ -314,15 +315,6 @@
 
             />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_buy_now"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/bg_yellow_rounded"
-            android:paddingHorizontal="24dp"
-            android:text="Buy"
-            android:textColor="@color/black" />
     </LinearLayout>
 
 </RelativeLayout>

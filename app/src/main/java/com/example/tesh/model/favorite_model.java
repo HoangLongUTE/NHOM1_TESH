@@ -1,53 +1,58 @@
 package com.example.tesh.model;
 
 public class favorite_model {
-    private int resourceId_fv;
-    private String title_fv;
-    private String price_fv;
-    private String sell_fv;
-    private String itemId;
+    private String imgURL;
+    private String name;
+    private int price;
+    private int quantity;
+    private int id;
 
-    public favorite_model(int resourceId_fv, String title_fv, String price_fv, String sell_fv) {
-        this.resourceId_fv= resourceId_fv;
-        this.title_fv = title_fv;
-        this.price_fv= price_fv;
-        this.sell_fv = sell_fv;
+    public favorite_model(String imgURL, String name, int price, int quantity, int id) {
+        this.imgURL = imgURL;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.id = id;
     }
 
-    public int getResourceId_fv() {
-        return resourceId_fv;
+    public String getImgURL() {
+        return imgURL;
     }
 
-    public void setResourceId_fv(int resourceId_fv) {
-        this.resourceId_fv = resourceId_fv;
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
     }
 
-    public String getTitle_fv() {
-        return title_fv;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle_fv(String title_fv) {
-        this.title_fv = title_fv;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPrice_fv() {
-        return price_fv;
+    public int getPrice() {
+        return price;
     }
 
-    public void setPrice_fv(String price_fv) {
-        this.price_fv = price_fv;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public String getSell_fv() {
-        return sell_fv;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setSell_fv(String sell_fv) {
-        this.sell_fv = sell_fv;
-    }
-    public String getItemId() {
-        return itemId;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
 

@@ -43,7 +43,7 @@ public class HotProductAdapter extends RecyclerView.Adapter<HotProductAdapter.Vi
             @Override
             public void onClick(View view ) {
                 Context context = view.getContext();
-                Intent intent = new Intent(context, activity_favorite_detail.class );
+                Intent intent = new Intent(context, activity_favorite_detail.class);
                 intent.putExtra("idProduct",hotProductItem.getId());
                 context.startActivity(intent);
             }
