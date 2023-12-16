@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +30,10 @@ import com.example.tesh.LoginActivity;
 import com.example.tesh.R;
 import com.example.tesh.Setting_Activity;
 import com.example.tesh.User.User;
+import com.example.tesh.activity_Author;
+import com.example.tesh.activity_QRcode;
 import com.example.tesh.activity_edit_profile;
+import com.example.tesh.activity_youractivity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -140,15 +144,51 @@ public class FragmentUser extends Fragment {
         // Thêm logic của bạn cho bottom sheet ở đây (nếu cần)
 
         LinearLayout layoutSetting = bottomSheetView.findViewById(R.id.layoutSetting);
+        LinearLayout layoutQRcode = bottomSheetView.findViewById(R.id.layoutQR);
+        LinearLayout layoutActive = bottomSheetView.findViewById(R.id.layoutActive);
+        LinearLayout layoutAuthor = bottomSheetView.findViewById(R.id.layoutAuthor);
+
         layoutSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Xử lý khi nhấp vào "Cài đặt và quyền riêng tư"
+                showToast("Setting and privacy is clicked");
                 openSettingsActivity();
                 bottomSheetDialog.dismiss();  // Đóng bottom sheet sau khi chuyển trang
             }
         });
-        
+
+        layoutQRcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Xử lý khi nhấp vào "Cài đặt và quyền riêng tư"
+                showToast("My QR code is clicked");
+                openQRcodeActivity();
+                bottomSheetDialog.dismiss();  // Đóng bottom sheet sau khi chuyển trang
+            }
+        });
+
+        // Thêm sự kiện cho layoutActive
+        layoutActive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Xử lý khi nhấp vào "Your activity"
+                showToast("Your Activity is clicked");
+                openYourActivity();
+                bottomSheetDialog.dismiss();
+                //bottomSheetDialog.dismiss();  // Đóng bottom sheet sau khi thông báo
+            }
+        });
+
+        layoutAuthor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Xử lý khi nhấp vào "Cài đặt và quyền riêng tư"
+                showToast("Authors is clicked");
+                openAuthorActivity();
+                bottomSheetDialog.dismiss();  // Đóng bottom sheet sau khi chuyển trang
+            }
+        });
 
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
@@ -244,9 +284,28 @@ public class FragmentUser extends Fragment {
         getActivity().finish();
     }
 
+
     private void openSettingsActivity() {
         Intent intent = new Intent(getActivity(), Setting_Activity.class);
         startActivity(intent);
     }
 
+    private void openQRcodeActivity() {
+        Intent intent = new Intent(getActivity(), activity_QRcode.class);
+        startActivity(intent);
+    }
+
+    private void openYourActivity() {
+        Intent intent = new Intent(getActivity(), activity_youractivity.class);
+        startActivity(intent);
+    }
+
+    private void openAuthorActivity() {
+        Intent intent = new Intent(getActivity(), activity_Author.class);
+        startActivity(intent);
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+    }
 }

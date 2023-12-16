@@ -7,7 +7,7 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -20,9 +20,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TeSh"
         tools:targetApi="31">
-        <activity android:name=".activity_bottomsheetlayout"/>
         <activity
-
+            android:name=".activity_Author"
+            android:exported="false" />
+        <activity
+            android:name=".activity_youractivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_QRcode"
+            android:exported="false" />
+        <activity android:name=".activity_bottomsheetlayout" />
+        <activity
             android:name=".activity_favorite_detail"
             android:exported="false" />
         <activity

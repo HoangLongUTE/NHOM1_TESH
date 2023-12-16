@@ -6,18 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class Setting_Activity extends AppCompatActivity {
+public class activity_youractivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_youractivity);
 
-        // Lấy reference đến ImageView có id back_bottomsheet
-        ImageView backButton = findViewById(R.id.back_bottomsheet);
+        ImageView backyouractivity = findViewById(R.id.back_youractivity);
 
         // Gắn sự kiện onClickListener cho ImageView
-        backButton.setOnClickListener(new View.OnClickListener() {
+        backyouractivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Khi ImageView được click, chuyển về activity_bottomsheetlayout
