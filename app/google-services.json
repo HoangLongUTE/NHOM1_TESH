@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "157930531811",
-    "project_id": "tesh-comic-store-43",
-    "storage_bucket": "tesh-comic-store-43.appspot.com"
+    "project_number": "524272303934",
+    "firebase_url": "https://teshstorebykod-43-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "teshstorebykod-43",
+    "storage_bucket": "teshstorebykod-43.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:157930531811:android:d858dc5e0d3e9981f68ed6",
+        "mobilesdk_app_id": "1:524272303934:android:bb0af59e8901566caa366f",
         "android_client_info": {
           "package_name": "com.example.tesh"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDMInXy7NB7_qBhcvhmrLatqdTJhjQs2P4"
+          "current_key": "AIzaSyBlH-IaEWtSKubKiA5jvTr_67HnkP5RFCQ"
         }
       ],
       "services": {

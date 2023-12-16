@@ -60,21 +60,13 @@
                 android:id="@+id/name_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nguyen Duc Truyen (+84)08******32"
+                android:text="00000000000"
                 android:layout_marginRight="25dp"
                 android:layout_toRightOf="@id/ic_location"
                 android:textColor="@color/black"
                 android:textSize="19dp"/>
 
-            <TextView
-                android:id="@+id/edit_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=">"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="19dp"
-                android:layout_toRightOf="@id/name_phone"/>
+
 
         </RelativeLayout>
 
@@ -86,6 +78,7 @@
             android:layout_marginLeft="10dp">
 
             <TextView
+                android:id="@+id/diachikh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="435/105 Tran Cao Van \nXuan Ha, Thanh Khe, Da Nang, Viet Nam"
@@ -105,115 +98,26 @@
             android:layout_marginTop="10dp"
             />
 
-        <RelativeLayout
-            android:id="@+id/list_sp"
-            android:background="@drawable/border_inputchat"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/list_sp"-->
+<!--            android:background="@drawable/border_inputchat"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_below="@id/line">-->
 
 
-            <ImageView
-                android:id="@+id/imgsp"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:src="@drawable/bayvienngocrong" />
-
-            <TextView
-                android:id="@+id/txtnamesp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/imgsp"
-                android:text="Dragon Ball ep107"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"/>
-
-
-            <ImageView
-                android:id="@+id/imgstarsp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/imgsp"
-                android:layout_below="@+id/txtnamesp"
-                android:src="@drawable/starken"
-                android:layout_width="15dp"
-                android:layout_height="15dp"/>
-
-            <TextView
-                android:id="@+id/txtevaspken"
-                android:layout_toRightOf="@+id/imgstarsp"
-                android:layout_below="@+id/txtnamesp"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="15dp"
-                android:textColor="#B4000000"
-                android:textSize="15sp"
-                android:text="4.5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/txtdolar"
-                android:layout_toRightOf="@+id/imgsp"
-                android:layout_below="@+id/imgstarsp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:text="$"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/txtpricesp"
-                android:text="19"
-                android:layout_toRightOf="@+id/txtdolar"
-                android:layout_below="@+id/imgstarsp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="2dp"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-
-
-            <LinearLayout
-                android:id="@+id/quantitycart"
-                android:layout_marginTop="80dp"
-                android:orientation="horizontal"
-                android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/numner"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@null"
-                    android:text="1"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
+<!--        </LinearLayout>-->
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/list_sp"
-            android:layout_marginTop="15dp"
+            android:layout_above="@+id/listpay"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
             android:layout_marginLeft="10dp">
 
             <ImageView
@@ -250,6 +154,15 @@
 
         </RelativeLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listpay"
+            android:layout_width="match_parent"
+            android:layout_height="370dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="133dp"
+            android:layout_marginEnd="-1dp" />
+
     </RelativeLayout>
 
 
@@ -280,9 +193,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginRight="120dp"
-            android:layout_toLeftOf="@+id/btnconfirm"
-            android:text="19"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/itdolar"
+            android:text="0"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -291,7 +204,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_toLeftOf="@+id/txtmoney"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/txttotal"
+            android:layout_marginLeft="15dp"
             android:text="$"
             android:textColor="@color/black"
             android:textSize="20sp" />

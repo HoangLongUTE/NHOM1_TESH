@@ -12,8 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tesh.R;
-import com.example.tesh.activity_comic_detail;
+import com.example.tesh.activity_favorite_detail;
 import com.example.tesh.model.comic_model;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class ComicAdapter extends RecyclerView.Adapter<ComicAdapter.ComicViewHol
     @Override
     public void onBindViewHolder(@NonNull ComicViewHolder holder, int position) {
         comic_model comic = comicList.get(position);
-        holder.imageView.setImageResource(comic.getResourceId());
+        Picasso.get().load(comic.getResourceId()).into(holder.imageView);
         holder.titleTextView.setText(comic.getTitle());
         holder.priceTextView.setText(comic.getPrice());
         holder.sellTextView.setText(comic.getSell());
@@ -47,11 +48,9 @@ public class ComicAdapter extends RecyclerView.Adapter<ComicAdapter.ComicViewHol
             @Override
             public void onClick(View v) {
                 // Chuyển đến Activity chi tiết
-                Intent intent = new Intent(context, activity_comic_detail.class);
-                intent.putExtra("imageResourceId", comic.getResourceId());
-                intent.putExtra("title", comic.getTitle());
-                intent.putExtra("price", comic.getPrice());
-                intent.putExtra("sell", comic.getSell());
+                Intent intent = new Intent(context, activity_favorite_detail.class );
+                intent.putExtra("idProduct",comic.getId());
+//                intent.putExtra("Detective Conan", hotProductItem.getImageResource());
                 context.startActivity(intent);
             }
         });

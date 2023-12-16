@@ -1,47 +1,82 @@
 package com.example.tesh.Cart;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class item {
-    public String tensp;
-    public int giasp;
-    public int hinhsp;
-    public int soluongsp;
+    public String name;
+    public int price;
+    public String imageURL;
+    public int quantity;
+    public int id;
+    public boolean isChecked;
+    // private int numProduct = 1;
 
-    public item(String tensp, int giasp, int hinhsp, int soluongsp) {
-        this.tensp = tensp;
-        this.giasp = giasp;
-        this.hinhsp = hinhsp;
-        this.soluongsp = soluongsp;
+    public item(){
+
     }
 
-    public String getTensp() {
-        return tensp;
+    public item(String name, int price, String imageURL, int quantity, int id) {
+        this.name = name;
+        this.price = price;
+        this.imageURL = imageURL;
+        this.quantity = quantity;
+        this.id = id;
     }
 
-    public void setTensp(String tensp) {
-        this.tensp = tensp;
+    public String getName() {
+        return name;
     }
 
-    public int getGiasp() {
-        return giasp;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setGiasp(int giasp) {
-        this.giasp = giasp;
+    public int getPrice() {
+        return price;
     }
 
-    public int getHinhsp() {
-        return hinhsp;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public void setHinhsp(int hinhsp) {
-        this.hinhsp = hinhsp;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public int getSoluongsp() {
-        return soluongsp;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
-    public void setSoluongsp(int soluongsp) {
-        this.soluongsp = soluongsp;
+    public int getQuantity() {
+        return quantity;
     }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+    public Map<String, Object> toMap(){
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("name",name);
+        return result;
+    }
+
+
+
 }

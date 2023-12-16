@@ -1,8 +1,11 @@
 package com.example.tesh.Cart;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,154 +14,144 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tesh.MainActivity;
+import com.example.tesh.MessageActivity;
 import com.example.tesh.R;
+import com.example.tesh.activity_edit_profile;
 import com.example.tesh.detail_cart;
 import com.example.tesh.fragment.FragmentHome;
 import com.example.tesh.profile;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cart extends AppCompatActivity {
 
-
+    private RecyclerView rcvCart;
+    static ProductAdapter productAdapter;
+    static List<item> list;
+    ImageView back;
+    Button btnPay;
     static CheckBox cbxtotal;
-    ListView lvgiohang;
-     static ArrayList<item> mangsp;
     static TextView txttongtien;
     static ImageButton imgthungrac;
-    static cartadapter adapter;
-    ImageView btn_to_home;
-    Button btn_to_detailcart;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart_main);
+        back = (ImageView) findViewById(R.id.imgback);
+        btnPay = (Button) findViewById(R.id.btnpay);
+        txttongtien = (TextView) findViewById(R.id.txtmoneyken);
+        imgthungrac = (ImageButton) findViewById(R.id.bin);
+        cbxtotal = (CheckBox) findViewById(R.id.cbxall);
+
+        //(sd  SharedPreferences:) de lay username
+        username= receiveData(Cart.this);
+        rcvCart = (RecyclerView) findViewById(R.id.listviewitem);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rcvCart.setLayoutManager(linearLayoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        rcvCart.addItemDecoration(dividerItemDecoration);
+        list = new ArrayList<>();
+        productAdapter = new ProductAdapter(list, txttongtien);
 
 
-        txttongtien= (TextView) findViewById(R.id.txtmoneyken);
-        imgthungrac=(ImageButton) findViewById(R.id.bin);
-        cbxtotal=(CheckBox) findViewById(R.id.cbxall);
-        btn_to_home=(ImageView)findViewById(R.id.imgback);
-        btn_to_detailcart = (Button) findViewById(R.id.btnpay);
+        String myUserName = username;
+        productAdapter.setMyUserName(myUserName);
+        rcvCart.setAdapter(productAdapter);
+        getListCartFromRealtimeDatabase();
 
-
-        btn_to_home.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(Cart.this, MainActivity.class);
-                startActivity(intent1);
+                Intent intent = new Intent(Cart.this, MainActivity.class);
+                startActivity(intent);
             }
         });
-
-        btn_to_detailcart.setOnClickListener(new View.OnClickListener() {
+        btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(Cart.this, detail_cart.class);
-                startActivity(intent2);
+                ArrayList<Integer> listProduct = productAdapter.getSelectedItems();
+                Intent intent = new Intent(Cart.this, detail_cart.class);
+                intent.putIntegerArrayListExtra("listID", listProduct);
+                startActivity(intent);
             }
         });
 
-        cbxtotal.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                boolean anyItemUnchecked = true;
-                for (boolean itemChecked : adapter.checkedItems) {
-                    if (!itemChecked) {
-                        anyItemUnchecked = false;
-                        break;
-                    }
-                }
-                if(anyItemUnchecked){
-                    if(cbxtotal.isChecked()==false)
-                        for (int i = 0; i< mangsp.size(); i++){
-                            adapter.checkedItems.set(i,false);
-                        }
-                }else if(cbxtotal.isChecked()==true){
-                    for (int i = 0; i< mangsp.size(); i++){
-                        adapter.checkedItems.set(i,true);
-                    }
-                }
-                adapter.notifyDataSetChanged();
-                EvenUtil();
-            }
-        });
-
-        Anhxa();
-        EvenUtil();
-        CactchOnIteamListview();
-    }
-
-    private void Anhxa() {
-        lvgiohang = (ListView) findViewById(R.id.listviewitem);
-        mangsp=new ArrayList<>();
-
-        mangsp.add(new item("Conan",20,R.drawable.naruto_1,1));
-        mangsp.add(new item("One Piece",30,R.drawable.naruto_1,1));
-        mangsp.add(new item("Naruto",24,R.drawable.naruto_1,1));
-        mangsp.add(new item("Doraemon",20,R.drawable.naruto_1,1));
-
-
-        adapter = new cartadapter(Cart.this, mangsp);
-        lvgiohang.setAdapter(adapter);
-    }
-
-    public static void EvenUtil() {
-        int tongtien=0;
-        //MainActivity.mangsp.check
-        for (int i = 0; i< mangsp.size(); i++){
-            if(adapter.checkedItems.get(i)){
-                tongtien+= mangsp.get(i).getGiasp();
-            }
-        }
-        txttongtien.setText(tongtien+"");
-    }
-
-    private void CactchOnIteamListview() {
         imgthungrac.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                ArrayList<Integer> itemsToDelete = new ArrayList<>();
-                ArrayList<Boolean> tempCheckedItems = new ArrayList<>(adapter.checkedItems);
+            public void onClick(View v) {
+                productAdapter.deleteSelectedItems();
+            }
+        });
+        cbxtotal.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Cập nhật trạng thái của tất cả các item trong danh sách
+            for (item item : list) {
+                item.setChecked(isChecked);
+            }
+            productAdapter.notifyDataSetChanged();
+            productAdapter.updateTotalPrice();
+        });
 
-                for (int j = mangsp.size() - 1; j >= 0; j--) {
-                    if (adapter.checkedItems.get(j)) {
-                        itemsToDelete.add(j);
+
+    }
+
+    public static String receiveData(Context context) {
+        // Khởi tạo SharedPreferences
+        SharedPreferences preferences = context.getSharedPreferences("sendUsername", Context.MODE_PRIVATE);
+
+        // Đọc giá trị từ key "TEN_BIEN", nếu không tìm thấy, sử dụng giá trị mặc định là ""
+        return preferences.getString("TEN_BIEN", "");
+    }
+
+    private void getListCartFromRealtimeDatabase() {
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Cart").child(username);
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<item> _list = null;
+                if (list.size() != 0) {
+                    _list = new ArrayList<>(list);
+                }
+                list.clear();
+                int i = 0;
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    item Item = dataSnapshot.getValue(item.class);
+                    if (Item != null && _list != null) {
+                        Item.setChecked(_list.get(i).isChecked());
                     }
+                    list.add(Item);
+                    i++;
                 }
+                productAdapter.notifyDataSetChanged();
+            }
 
-                if (!itemsToDelete.isEmpty()) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Cart.this);
-                    builder.setTitle("Xác nhận xóa sản phẩm");
-                    builder.setMessage("Bạn có chắc muốn xóa các sản phẩm đã chọn?");
-                    builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            for (int position : itemsToDelete) {
-                                mangsp.remove(position);
-                                tempCheckedItems.remove(position);
-                                adapter.checkedItems = new ArrayList<>(tempCheckedItems);
-                            }
-                            adapter.notifyDataSetChanged();
-                            EvenUtil();
-                        }
-                    });
-
-                    builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            adapter.notifyDataSetChanged();
-                            EvenUtil();
-                        }
-                    });
-
-                    builder.show();
-                }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Cart.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });
     }

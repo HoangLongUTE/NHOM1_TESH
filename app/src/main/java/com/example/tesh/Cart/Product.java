@@ -1,26 +1,18 @@
-package com.example.tesh.model;
+package com.example.tesh.Cart;
 
-public class favorite_model {
-    private String imgURL;
-    private String name;
-    private int price;
-    private int quantity;
-    private int id;
+public class Product {
+    public String name;
+    public int price;
+    public String imageURL;
+    public int quantity;
+    public int id;
 
-    public favorite_model(String imgURL, String name, int price, int quantity, int id) {
-        this.imgURL = imgURL;
+    public Product(String name, int price, String imageURL, int quantity, int id) {
         this.name = name;
         this.price = price;
+        this.imageURL = imageURL;
         this.quantity = quantity;
         this.id = id;
-    }
-
-    public String getImgURL() {
-        return imgURL;
-    }
-
-    public void setImgURL(String imgURL) {
-        this.imgURL = imgURL;
     }
 
     public String getName() {
@@ -39,6 +31,14 @@ public class favorite_model {
         this.price = price;
     }
 
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -55,4 +55,3 @@ public class favorite_model {
         this.id = id;
     }
 }
-

@@ -40,12 +40,12 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:22.1.2")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.firebase:firebase-database:20.3.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
-
 
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies
@@ -60,6 +60,9 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     androidTestImplementation("androidx.recyclerview:recyclerview:1.2.1")
     androidTestImplementation("androidx.cardview:cardview:1.0.0")
+    implementation ("com.firebaseui:firebase-ui-database:8.0.2")
+    implementation ("com.github.bumptech.glide:glide:4.12.0") // Thay đổi phiên bản theo phiên bản mới nhất
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation ("com.google.android.material:material:1.2.1")
 
@@ -69,6 +72,7 @@ dependencies {
     implementation ("com.google.android.material:material:1.2.1")
 
 
+    androidTestImplementation("androidx.fragment:fragment-ktx:1.3.6")
 
 
 

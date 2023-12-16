@@ -26,11 +26,6 @@
             android:name=".activity_favorite_detail"
             android:exported="false" />
         <activity
-            android:name=".activity_comic_detail"
-            android:exported="false"
-            android:label="@string/title_activity_comic_detail"
-            android:theme="@style/Theme.TeSh" />
-        <activity
             android:name=".Setting_Activity"
             android:exported="false" />
         <activity

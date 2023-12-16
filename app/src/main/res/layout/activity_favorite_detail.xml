@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,204 +28,293 @@
             android:textStyle="normal" />
         <ImageView
             android:id="@+id/btn_back_to_favorite"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:src="@drawable/back"
             android:background="@color/endcolor"
+            android:padding="10dp"
             />
 
+        <ImageView
+            android:id="@+id/btn_go_to_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/shopping_cart"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="0dp"
+            android:padding="10dp"
+            />
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/img_detail_favorite"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/conan"
-        android:layout_marginTop="30dp"/>
-
-    <TextView
-        android:id="@+id/tv_detail_title_fv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Conan Detective EP80"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:fontFamily="@font/poppins_bold"
-        android:layout_marginTop="10dp"
-        android:maxLines="2" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="8dp">
-
-        <TextView
-            android:id="@+id/tv_detail_price_label"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Price"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:fontFamily="sans-serif-medium"/>
-
-        <TextView
-            android:id="@+id/tv_detail_price_fv"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="đ 75 000"
-            android:textSize="18sp"
-            android:textColor="@color/black" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="8dp">
-
-        <TextView
-            android:id="@+id/tv_detail_sell_label"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Sell"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:fontFamily="sans-serif-medium"/>
-
-        <TextView
-            android:id="@+id/tv_detail_sell_fv"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Sold 134"
-            android:textSize="18sp"
-            android:textAlignment="textStart"
-            android:textColor="@color/black" />
-    </LinearLayout>
 
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/white"
-        android:fillViewport="true"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="70dp"
+        android:scrollbars="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Author Section -->
-            <TextView
+            android:layout_height="match_parent"
+            android:paddingHorizontal="10dp"
+            android:orientation="vertical"
+            android:scrollbars="vertical">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Author"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@color/black" />
-
+                android:background="@drawable/bg_gray_rounded"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+                <ImageView
+                    android:id="@+id/img_detail_favorite"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/conan"
+                    />
+            </LinearLayout>
             <TextView
-                android:id="@+id/tv_detail_author_fv"
+                android:id="@+id/tv_detail_title_fv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_comic_detail"
-                android:text="Gosho Aoyama"
+                android:text="Conan Detective EP80"
+                android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="20sp"
+                android:fontFamily="@font/poppins_bold"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:padding="8dp"/>
-
-            <!-- Category Section -->
-            <TextView
+                android:maxLines="2" />
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Category"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@color/black" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
 
-            <TextView
-                android:id="@+id/tv_detail_category_fv"
+                <TextView
+                    android:id="@+id/tv_detail_price_label"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:textAlignment="textStart"
+                    android:layout_marginLeft="50dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-medium"/>
+
+                <TextView
+                    android:id="@+id/tv_detail_price_fv"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="đ 75 000"
+                    android:textSize="18sp"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_comic_detail"
-                android:text="Detective"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:padding="8dp"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
 
-            <!-- Number of Pages Section -->
-            <TextView
+                <TextView
+                    android:id="@+id/tv_detail_sell_label"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Quantity"
+                    android:textAlignment="textStart"
+                    android:layout_marginLeft="50dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-medium"/>
+
+                <TextView
+                    android:id="@+id/tv_detail_sell_fv"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Sold 134"
+                    android:textSize="18sp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <!-- Di chuyển phần layout chứa các nút (+, -) xuống dưới -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Number of pages"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@color/black" />
+                android:layout_marginTop="12dp"
+                android:gravity="center_horizontal">
 
-            <TextView
-                android:id="@+id/tv_detail_numberofpages_fv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_comic_detail"
-                android:text="184"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:padding="8dp"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_minus"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_border_black"
+                    android:text="-"
+                    android:textColor="@color/black" />
 
-            <!-- Release Date Section -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Release date"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@color/black" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/txt_quantity"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_border_black"
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/tv_detail_releasedate_fv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_comic_detail"
-                android:text="09/03/2020"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:padding="8dp"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_plus"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_border_black"
+                    android:text="+"
+                    android:textColor="@color/black" />
+            </LinearLayout>
 
-            <!-- Content Section -->
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Content"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@color/black" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:fillViewport="true"
+                android:padding="16dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Author"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/tv_detail_author"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_comic_detail"
+                        android:text="Gosho Aoyama"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:padding="8dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Category"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/tv_detail_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_comic_detail"
+                        android:text="Detective"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:padding="8dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Number of pages"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/tv_detail_numberofpages"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_comic_detail"
+                        android:text="184"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:padding="8dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Description"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/tv_detail_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_comic_detail"
+                        android:text="Truyện xoay quanh một cậu thám tử trung học có tên là Kudo Shinichi trong lúc đang điều tra một Tổ chức Áo đen bí ẩn đã bị ép phải uống một loại thuốc độc có thể gây chết người. May mắn là cậu đã sống sót nhưng cơ thể thì lại bị teo nhỏ như một đứa bé 6 tuổi."
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:padding="8dp"
+                        />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_detail_content_fv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_comic_detail"
-                android:text="Truyện xoay quanh một cậu thám tử trung học có tên là Kudo Shinichi trong lúc đang điều tra một Tổ chức Áo đen bí ẩn đã bị ép phải uống một loại thuốc độc có thể gây chết người. May mắn là cậu đã sống sót nhưng cơ thể thì lại bị teo nhỏ như một đứa bé 6 tuổi."
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:padding="8dp"/>
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</LinearLayout>
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0">
+        <!-- This is where your fragment will be added -->
+    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/footer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/lightGray"
+        android:gravity="center"
+        android:paddingHorizontal="10dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_go_to_chat"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bg_yellow_rounded"
+            android:padding="10dp"
+            android:src="@drawable/messenger"
+
+            />
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/detail_btn_favorite"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bg_yellow_rounded"
+            android:padding="10dp"
+            android:src="@drawable/heart_comic_detail"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_add_to_cart"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bg_yellow_rounded"
+            android:padding="10dp"
+            android:src="@drawable/add_to_cart"
+
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

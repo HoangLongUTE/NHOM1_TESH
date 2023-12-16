@@ -1,8 +1,11 @@
 package com.example.tesh;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +14,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.tesh.Cart.Cart;
+import com.example.tesh.Cart.item;
+import com.example.tesh.User.User;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView tv_Signup,text_forgetPassword;
     Button btnLogin, btn_facebook;
     TextInputEditText et_UserName, et_Password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +46,20 @@ public class LoginActivity extends AppCompatActivity {
         et_Password=findViewById(R.id.textPassword);
         btn_facebook=findViewById(R.id.btn_facebook);
         text_forgetPassword = findViewById(R.id.text_forgetPassword);
-
         text_forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
-                startActivity(intent);
+                String username = et_UserName.getText().toString().trim();
+                if(username.isEmpty())
+                {
+                    Toast.makeText(LoginActivity.this, "Please fill in your Username", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(LoginActivity.this, ResetPassword.class);
+                    intent.putExtra("username_key",username);
+                    startActivity(intent);
+                }
+
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -46,14 +68,38 @@ public class LoginActivity extends AppCompatActivity {
                 String username = et_UserName.getText().toString().trim();
                 String password = et_Password.getText().toString().trim();
                 if (username.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-//                } else if (!isValidCredentials(username, password)) {
-//                    Toast.makeText(LoginActivity.this, "Username và password không đáp ứng yêu cầu, username và password phải bao gồm ký tự hoa, ký tự thường, chữ số", Toast.LENGTH_SHORT).show();
+                      Toast.makeText(LoginActivity.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                  }
+                else{
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+                            .child(username);
+
+                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                String actualPassword = dataSnapshot.child("password").getValue(String.class);
+
+                                if (password.equals(actualPassword)) {
+                                    // Mật khẩu chính xác, chuyển đến MainActivity
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    sendData(LoginActivity.this,username);
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Mật khẩu không chính xác", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Tài khoản không tồn tại", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            // Xử lý lỗi nếu có
+                        }
+                    });
                 }
-                else {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
+
             }
         });
         //Chuyển sang SignUp
@@ -68,20 +114,20 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+    //su dung  SharedPreferences de gui username qua edit profile
+    public static void sendData(Context context, String dataToSend) {
 
+        // Khởi tạo SharedPreferences
+        SharedPreferences preferences = context.getSharedPreferences("sendUsername", Context.MODE_PRIVATE);
 
+        // Lấy một Editor để thực hiện các thay đổi
+        SharedPreferences.Editor editor = preferences.edit();
 
+        // Đặt giá trị cho key "TEN_BIEN"
+        editor.putString("TEN_BIEN", dataToSend);
 
+        // Lưu các thay đổi
+        editor.apply();
+    }
 
-
-//    private boolean isValidCredentials(String username, String password) {
-//        // Biểu thức chính quy để kiểm tra username và password
-//        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]+$";
-//
-//        Pattern pattern = Pattern.compile(regex);
-//        Matcher matcherUsername = pattern.matcher(username);
-//        Matcher matcherPassword = pattern.matcher(password);
-//
-//        return matcherUsername.matches() && matcherPassword.matches();
-//    }
 }
