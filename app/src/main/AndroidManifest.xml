@@ -70,9 +70,6 @@
             android:name=".ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".fragment_detail_product"
-            android:exported="false" />
-        <activity
             android:name=".SignupActivity"
             android:exported="false" />
         <activity

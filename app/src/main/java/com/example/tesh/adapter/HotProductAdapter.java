@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tesh.R;
 import com.example.tesh.activity_favorite_detail;
-import com.example.tesh.fragment_detail_product;
 import com.example.tesh.item.HotProductItem;
 import com.squareup.picasso.Picasso;
 
