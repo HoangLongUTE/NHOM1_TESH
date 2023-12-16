@@ -51,6 +51,7 @@ public class FragmentFavorite extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+                    favoriteModels.clear();
                     // Lặp qua tất cả các mục trong trường "hotproductitem"
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         // Lấy giá trị của mỗi mục trong trường "hotproductitem"

@@ -123,12 +123,13 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
                         int idFavoriteProduct = favoriteList.get(position).getId();
                         System.out.println("So sanh id:"+ String.valueOf(id == idFavoriteProduct));
                         if(id == idFavoriteProduct) {
-                            snapshot.getRef().removeValue();
+                            snapshot.getRef().setValue(null);
                             favoriteList.remove(position);
                             notifyItemRemoved(position);
                             notifyItemRangeChanged(position, getItemCount());
                             FavoriteManager.updateFavoritesList(favoriteList);
                             Toast.makeText(context, "Item removed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, snapshot.getRef().toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
 

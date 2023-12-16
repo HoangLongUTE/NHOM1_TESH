@@ -44,6 +44,7 @@ public class activity_favorite_detail extends AppCompatActivity {
     Integer price;
     int quantity = 1;
     int idproduct,categoryID,title_quantity,number_page;
+    Product thisItem;
 
     private ImageView btn_back_to_favorite;
     private ImageView imgFavoriteRemove;
@@ -75,9 +76,15 @@ public class activity_favorite_detail extends AppCompatActivity {
         btn_add_to_cart = findViewById(R.id.btn_add_to_cart);
         btn_add_favorite = findViewById(R.id.detail_btn_favorite);
         imageView = findViewById(R.id.img_detail_favorite);
-//        btn_add_favorite = findViewById(R.id.btn_add_to_favourite);
+        btn_add_favorite = findViewById(R.id.detail_btn_favorite);
         username= receiveData(activity_favorite_detail.this);
 
+        btn_add_favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToFavorite(username,thisItem);
+            }
+        });
         //Set event click button
         btn_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +152,7 @@ public class activity_favorite_detail extends AppCompatActivity {
                 number_page = snapshot.child("page").getValue(int.class);
                 title_quantity = snapshot.child("quantity").getValue(int.class);
 
+                thisItem  = new Product(name,price,imageURL,title_quantity,idproduct);
                 txt_name.setText(name.toString());
                 txt_content.setText(content.toString());
                 txt_price.setText("$ "+String.valueOf(price));
@@ -178,6 +186,7 @@ public class activity_favorite_detail extends AppCompatActivity {
                     }
 
                 }
+
             }
 
             @Override
@@ -186,13 +195,6 @@ public class activity_favorite_detail extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void removeItemFromFavorites(String itemId, int position) {
-        FavoriteManager.removeFromFavorites(itemId);
-        if (favoriteAdapter != null) {
-            favoriteAdapter.removeItem(position);
-        }
     }
 
     private void addToCart(String user, Product product) {
@@ -243,6 +245,27 @@ public class activity_favorite_detail extends AppCompatActivity {
                     }
                 Intent intent = new Intent(activity_favorite_detail.this, Cart.class);
                 startActivity( intent);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private  void addToFavorite(String username,Product thisItem) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Favorite").child(username);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                myRef.child(String.valueOf(thisItem.getId())).setValue(thisItem, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                        Toast.makeText(activity_favorite_detail.this, "Đã thêm sản phẩm vào mục yêu thích", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
