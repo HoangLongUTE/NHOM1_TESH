@@ -20,6 +20,8 @@ import com.example.tesh.R;
 import com.example.tesh.activity_favorite_detail;
 import com.example.tesh.manager.FavoriteManager;
 import com.example.tesh.model.favorite_model;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -78,22 +80,23 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                showDeleteConfirmationDialog(position);
+//                favoriteList.get(position);
+                int id = favoriteList.get(position).getId();
+                showDeleteConfirmationDialog(id);
                 return true;
             }
         });
     }
 
-    private void showDeleteConfirmationDialog(final int position) {
+    private void showDeleteConfirmationDialog(final int idXoa) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Are you sure you want to delete this item?")
-                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+        builder.setMessage("Bạn có muốn xóa sản phẩm ra khỏi mục yêu thích?")
+                .setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // Xóa item từ danh sách và cập nhật RecyclerView
-                        removeItem(position);
+                        removeItem(idXoa);
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Hủy bỏ việc xóa
                         dialog.dismiss();
@@ -108,28 +111,22 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         return favoriteList.size();
     }
 
-    public void removeItem(int position) {
+    public void removeItem(int id) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Favorite").child(username);
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    // Lặp qua tất cả các mục trong trường "hotproductitem"
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        // Lấy giá trị của mỗi mục trong trường "hotproductitem"
-                        // In thông tin mục
-                        int id = snapshot.child("id").getValue(int.class);
-                        int idFavoriteProduct = favoriteList.get(position).getId();
-                        System.out.println("So sanh id:"+ String.valueOf(id == idFavoriteProduct));
-                        if(id == idFavoriteProduct) {
-                            snapshot.getRef().setValue(null);
-                            favoriteList.remove(position);
-                            notifyItemRemoved(position);
-                            notifyItemRangeChanged(position, getItemCount());
-                            FavoriteManager.updateFavoritesList(favoriteList);
-                            Toast.makeText(context, "Item removed", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(context, snapshot.getRef().toString(), Toast.LENGTH_SHORT).show();
+                        int idFromDB = snapshot.child("id").getValue(int.class);
+                        if(id == idFromDB) {
+                            snapshot.getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(context, "Đã xóa sản phẩm ra khỏi mục yêu thích", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
                     }
 

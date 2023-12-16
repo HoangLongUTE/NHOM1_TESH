@@ -61,7 +61,6 @@ public class FragmentFavorite extends Fragment {
                         int quantity = snapshot.child("quantity").getValue(int.class);
                         int price = snapshot.child("price").getValue(int.class);
                         int id = snapshot.child("id").getValue(int.class);
-                        System.out.println("Favorite id:"+id);
                         // Thêm đối tượng favorite_model
                         favoriteModels.add(new favorite_model(image, name, price, quantity,id));
                     }
